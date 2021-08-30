@@ -1,0 +1,7 @@
+<Project Sdk="Microsoft.NET.Sdk">
+	<ItemGroup>
+		<ProjectReference Include="..\LittleByte.Core\LittleByte.Core.csproj" />
+		<ProjectReference Include="..\LittleByte.Events\LittleByte.Events.csproj" />
+		<ProjectReference Include="..\LittleByte.WorkerQueue\LittleByte.WorkerQueue.csproj" />
+	</ItemGroup>
+</Project>
