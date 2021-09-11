@@ -1,8 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<ItemGroup>
-		<PackageReference Include="FluentValidation" Version="10.3.1" />
+		<ProjectReference Include="..\LittleByte.Core\LittleByte.Core.csproj" />
 	</ItemGroup>
 	<ItemGroup>
-		<ProjectReference Include="..\LittleByte.Core\LittleByte.Core.csproj" />
+		<PackageReference Include="FluentValidation" Version="10.3.1" />
 	</ItemGroup>
 </Project>
