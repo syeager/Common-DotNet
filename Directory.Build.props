@@ -11,14 +11,15 @@
 	</PropertyGroup>
 
 	<PropertyGroup>
-		<TargetFramework>net5.0</TargetFramework>
-		<Nullable>enable</Nullable>
-		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+		<TargetFramework>net6.0</TargetFramework>
+		<LangVersion>10.0</LangVersion>
+		<Platforms>AnyCPU</Platforms>
+		<Configurations>Debug;Release;Local</Configurations>
 	</PropertyGroup>
 
 	<PropertyGroup>
-		<Platforms>AnyCPU</Platforms>
-		<Configurations>Debug;Release;Local</Configurations>
+		<Nullable>enable</Nullable>
+		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 	</PropertyGroup>
 
 	<PropertyGroup>
