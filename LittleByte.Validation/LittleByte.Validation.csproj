@@ -1,7 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<ItemGroup>
+		<AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
+			<_Parameter1>LittleByte.Validation.Test</_Parameter1>
+		</AssemblyAttribute>
+	</ItemGroup>
+	
+	<ItemGroup>
 		<ProjectReference Include="..\LittleByte.Core\LittleByte.Core.csproj" />
 	</ItemGroup>
+
 	<ItemGroup>
 		<PackageReference Include="FluentValidation" Version="10.3.3" />
 	</ItemGroup>

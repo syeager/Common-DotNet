@@ -10,7 +10,7 @@ namespace LittleByte.Validation
         public ValidationResult Validation { get; }
 
         [MemberNotNullWhen(true, nameof(Model))]
-        public bool IsSuccess => Model != null && Validation.IsValid;
+        public bool IsSuccess => Validation.IsValid;
 
         internal ValidModel(T? model, ValidationResult validation)
         {
