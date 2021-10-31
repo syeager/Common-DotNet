@@ -1,0 +1,11 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.0-rc.2.21480.10" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LittleByte.Core\LittleByte.Core.csproj" />
+  </ItemGroup>
+</Project>

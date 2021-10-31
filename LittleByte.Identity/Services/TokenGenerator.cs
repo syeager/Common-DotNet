@@ -9,7 +9,7 @@ namespace LittleByte.Asp.Identity
 {
     public interface ITokenGenerator
     {
-        JwtSecurityToken GenerateJwt(IReadOnlyCollection<Claim> claims);
+        JwtSecurityToken GenerateJwt(IEnumerable<Claim> claims);
     }
 
     public class TokenGenerator : ITokenGenerator
@@ -17,14 +17,14 @@ namespace LittleByte.Asp.Identity
         private readonly JwtOptions jwtOptions;
         private readonly SigningCredentials signingCredentials;
 
-        public TokenGenerator(IOptions<JwtOptions> jwtOptions)
+        public TokenGenerator(IOptions<JwtOptions> jwtOptions, ICredentialsGenerator credentialsGenerator)
         {
             this.jwtOptions = jwtOptions.Value;
 
-            signingCredentials = TokenHelper.CreateCredentials(this.jwtOptions.Secret);
+            signingCredentials = credentialsGenerator.Create(this.jwtOptions.Secret);
         }
 
-        public JwtSecurityToken GenerateJwt(IReadOnlyCollection<Claim> claims)
+        public JwtSecurityToken GenerateJwt(IEnumerable<Claim> claims)
         {
             var validTo = S.Date.UtcNow.AddMinutes(jwtOptions.TtlMinutes);
             var token = new JwtSecurityToken(
