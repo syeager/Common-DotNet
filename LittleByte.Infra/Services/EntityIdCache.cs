@@ -1,7 +1,7 @@
 ﻿using LittleByte.Infra.Models;
 using Serilog;
 
-namespace Articlib.Articles.Infra;
+namespace LittleByte.Infra;
 
 public interface IEntityIdReadCache
 {
