@@ -2,7 +2,7 @@
 
 namespace LittleByte.Configuration
 {
-    public static class ConfigurationExtension
+    public static class IConfigurationExtension
     {
         public static T GetSection<T>(this IConfiguration configuration, string key)
         {
