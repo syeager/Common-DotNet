@@ -1,4 +1,5 @@
 ﻿using System;
+using JetBrains.Annotations;
 using LittleByte.Core.Dates;
 
 namespace LittleByte.Core.Dates
@@ -18,6 +19,6 @@ namespace LittleByte.Core.Common
 {
     public static partial class S
     {
-        public static IDateService Date { get; set; } = new DateService();
+        public static IDateService Date { get; [UsedImplicitly] set; } = new DateService();
     }
 }
