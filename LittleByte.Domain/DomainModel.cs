@@ -2,9 +2,9 @@
 {
     public abstract class DomainModel<T>
     {
-        public DomainGuid<T> Id { get; }
+        public Id<T> Id { get; }
 
-        protected DomainModel(DomainGuid<T> id)
+        protected DomainModel(Id<T> id)
         {
             Id = id;
         }
