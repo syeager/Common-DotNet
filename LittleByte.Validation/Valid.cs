@@ -4,7 +4,7 @@ using FluentValidation.Results;
 
 namespace LittleByte.Validation
 {
-    public readonly struct ValidModel<T>
+    public readonly struct Valid<T>
     {
         private T? Model { get; }
         public ValidationResult Validation { get; }
@@ -12,7 +12,7 @@ namespace LittleByte.Validation
         [MemberNotNullWhen(true, nameof(Model))]
         public bool IsSuccess => Validation.IsValid;
 
-        internal ValidModel(T? model, ValidationResult validation)
+        internal Valid(T? model, ValidationResult validation)
         {
             Model = model;
             Validation = validation;

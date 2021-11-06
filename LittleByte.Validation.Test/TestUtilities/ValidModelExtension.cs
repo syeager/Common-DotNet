@@ -4,7 +4,7 @@ namespace LittleByte.Validation.Test.TestUtilities
 {
     public static class ValidModelExtension
     {
-        public static void AssertFirstError<T>(this ValidModel<T> @this, string propertyName, string errorCode) where T : class
+        public static void AssertFirstError<T>(this Valid<T> @this, string propertyName, string errorCode) where T : class
         {
             Assert.IsFalse(@this.IsSuccess);
             var error = @this.Validation.Errors[0];

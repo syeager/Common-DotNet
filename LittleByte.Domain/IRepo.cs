@@ -6,10 +6,10 @@ namespace LittleByte.Domain
 {
     public interface IRepo<TEntity>
     {
-        ValueTask AddAsync(ValidModel<TEntity> entity);
+        ValueTask AddAsync(Valid<TEntity> entity);
         ValueTask DeleteAsync(TEntity entity);
         
-        ValueTask UpdateAsync(ValidModel<TEntity> entity);
+        ValueTask UpdateAsync(Valid<TEntity> entity);
         ValueTask SaveAsync();
     }
 
