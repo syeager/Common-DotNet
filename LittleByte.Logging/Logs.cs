@@ -9,6 +9,7 @@ namespace LittleByte.Logging
 
     public static class Logs
     {
+        public static ILog Props(this ILogger _) => new Log();
         public static ILog Props() => new Log();
         public static IDiagnosticContext DiagnosticContext { get; set; } = new NullDiagnosticContext();
     }
