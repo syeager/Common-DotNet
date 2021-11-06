@@ -18,6 +18,16 @@ namespace LittleByte.Validation
         }
     }
 
+    public class FailModelValidator<TModel> : ModelValidator<TModel>
+        where TModel : class
+    {
+        public override Valid<TModel> Sign(TModel model)
+        {
+            var failedModel = new Valid<TModel>(null, new ValidationResult(new[] { new ValidationFailure("", "") }));
+            return failedModel;
+        }
+    }
+
     public class SuccessModelValidator<TModel> : ModelValidator<TModel>
     {
         public override Valid<TModel> Sign(TModel model)
