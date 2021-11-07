@@ -2,7 +2,7 @@
 using FluentValidation;
 using LittleByte.Core.Dates;
 
-namespace LittleByte.Validation
+namespace LittleByte.Validation.Validators
 {
     public class DateRangeValidator : AbstractValidator<DateRange>
     {
