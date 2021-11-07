@@ -1,15 +1,25 @@
 ﻿using System;
 using FluentValidation;
+using FluentValidation.Validators;
 using JetBrains.Annotations;
 
-namespace LittleByte.Validation
+namespace LittleByte.Validation.Validators;
+
+public static class AbsoluteUriValidatorExtension
 {
-    [UsedImplicitly]
-    public class AbsoluteUriValidator : AbstractValidator<Uri>
+    public static IRuleBuilderOptions<T, Uri> IsAbsoluteUri<T>(this IRuleBuilder<T, Uri> @this)
     {
-        public AbsoluteUriValidator()
-        {
-            RuleFor(u => u).Must(u => u.IsAbsoluteUri);
-        }
+        return @this.SetValidator(new AbsoluteUriValidator<T>());
+    }
+}
+
+[UsedImplicitly]
+public class AbsoluteUriValidator<T> : PropertyValidator<T, Uri>
+{
+    public override string Name => nameof(AbsoluteUriValidator<T>);
+
+    public override bool IsValid(ValidationContext<T> context, Uri value)
+    {
+        return value.IsAbsoluteUri;
     }
 }
