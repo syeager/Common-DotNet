@@ -20,4 +20,9 @@ public class IdValidator<T, TP> : PropertyValidator<T, Id<TP>>
     {
         return value != Id<TP>.Empty;
     }
+
+    protected override string GetDefaultMessageTemplate(string errorCode)
+    {
+        return "Id cannot be an empty Guid";
+    }
 }
