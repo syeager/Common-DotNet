@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
 namespace LittleByte.Core.Extensions;
 
@@ -37,5 +38,14 @@ public static class IServiceCollectionExtension
             .AddSingleton<TImplementation>()
             .AddSingleton<TService1, TImplementation>(s => s.GetRequiredService<TImplementation>())
             .AddSingleton<TService2, TImplementation>(s => s.GetRequiredService<TImplementation>());
+    }
+
+    public static IServiceCollection AddHostedService<TService, TImplementation>(this IServiceCollection @this)
+        where TService : class, IHostedService
+        where TImplementation : class, TService
+    {
+        return @this
+            .AddSingleton<TService, TImplementation>()
+            .AddHostedService(s => s.GetRequiredService<TService>());
     }
 }

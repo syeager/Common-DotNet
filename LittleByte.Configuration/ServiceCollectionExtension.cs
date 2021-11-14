@@ -6,12 +6,17 @@ namespace LittleByte.Configuration
 {
     public static class ServiceCollectionExtension
     {
-        public static T BindOptions<T>(this IServiceCollection services, IConfiguration configuration, string? key = null) where T : class
+        public static void BindOptions<T>(this IServiceCollection @this, IConfiguration configuration, string? key = null) where T : class
         {
             key ??= typeof(T).Name;
             var section = configuration.GetSection(key);
-            services.Configure<T>(section);
-            var serviceProvider = services.BuildServiceProvider();
+            @this.Configure<T>(section);
+        }
+        
+        public static T BindAndGetOptions<T>(this IServiceCollection @this, IConfiguration configuration, string? key = null) where T : class
+        {
+            @this.BindOptions<T>(configuration, key);
+            var serviceProvider = @this.BuildServiceProvider();
             return serviceProvider.GetService<IOptions<T>>()!.Value;
         }
     }
