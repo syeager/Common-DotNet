@@ -4,7 +4,7 @@ using Microsoft.Extensions.Options;
 
 namespace LittleByte.Configuration
 {
-    public static class ServiceCollectionExtension
+    public static class IServiceCollectionExtension
     {
         public static void BindOptions<T>(this IServiceCollection @this, IConfiguration configuration, string? key = null) where T : class
         {
