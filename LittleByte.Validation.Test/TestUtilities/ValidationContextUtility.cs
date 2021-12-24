@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using LittleByte.Core.Common;
 
 namespace LittleByte.Validation.Test
 {

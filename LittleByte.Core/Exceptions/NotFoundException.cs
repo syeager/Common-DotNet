@@ -9,8 +9,8 @@ namespace LittleByte.Core.Exceptions
         public string KeyName { get; }
         public string EntityKey { get; }
 
-        public NotFoundException(Type entityType, Guid entityID, Exception? innerException = null)
-            : this(entityType, entityID.ToString(), "Id", innerException)
+        public NotFoundException(Type entityType, Guid entityId, Exception? innerException = null)
+            : this(entityType, entityId.ToString(), "Id", innerException)
         {
         }
 
