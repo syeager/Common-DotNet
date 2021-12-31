@@ -9,6 +9,7 @@
 	  <PackageReference Include="RabbitMQ.Client" Version="6.2.2" />
 	</ItemGroup>
 	<ItemGroup>
+	  <ProjectReference Include="..\LittleByte.Configuration\LittleByte.Configuration.csproj" />
 	  <ProjectReference Include="..\LittleByte.Core\LittleByte.Core.csproj" />
 	</ItemGroup>
 	<ItemGroup>
