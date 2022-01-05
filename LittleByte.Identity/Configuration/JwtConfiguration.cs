@@ -1,5 +1,6 @@
 ﻿using System.IdentityModel.Tokens.Jwt;
 using System.Text;
+using LittleByte.Asp.Identity;
 using LittleByte.Configuration;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -14,7 +15,12 @@ public static class JwtConfiguration
     public static AuthenticationBuilder AddJwtAuthentication(this IServiceCollection services, IConfiguration configuration)
     {
         var options = services.BindAndGetOptions<JwtOptions>(configuration);
-        return services.AddJwtAuthentication(options);
+        return
+            services
+                .AddTransient<SecurityTokenHandler, JwtSecurityTokenHandler>()
+                .AddTransient<ITokenGenerator, TokenGenerator>()
+                .AddTransient<ICredentialsGenerator, CredentialsGenerator>()
+                .AddJwtAuthentication(options);
     }
 
     public static AuthenticationBuilder AddJwtAuthentication(this IServiceCollection services, JwtOptions jwtOptions)

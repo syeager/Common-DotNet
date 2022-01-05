@@ -13,6 +13,8 @@ public static class PersistenceConfiguration
         var (connectionString, version) = configuration.GetSection<MySqlOptions>();
         var serverVersion = ServerVersion.Parse(version);
 
-        return @this.AddDbContext<TContext>(builder => builder.UseMySql(connectionString, serverVersion));
+        return @this.AddDbContext<TContext>(builder => builder.UseMySql(connectionString, serverVersion)
+            .EnableDetailedErrors()
+            .EnableSensitiveDataLogging());
     }
 }
