@@ -35,6 +35,6 @@ namespace LittleByte.Extensions.AspNet.Responses
         }
 
         public ApiResponse(HttpStatusCode statusCode, string message)
-            : this(statusCode, null, message) {}
+            : this(statusCode, null, message) { }
     }
 }

@@ -7,7 +7,7 @@ public class PageRequest
     public int PageSize { get; set; } = DefaultPageSize;
     public int Page { get; set; }
 
-    public PageRequest() {}
+    public PageRequest() { }
 
     public PageRequest(int pageSize = DefaultPageSize, int page = 0)
     {

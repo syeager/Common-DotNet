@@ -9,7 +9,8 @@ namespace LittleByte.Extensions.AspNet.Middleware
 {
     public static class ModelValidationExceptionExtension
     {
-        public static IApplicationBuilder UseModelValidationExceptions(this IApplicationBuilder builder) => builder.UseMiddleware<ModelValidationExceptionMiddleware>();
+        public static IApplicationBuilder UseModelValidationExceptions(this IApplicationBuilder builder) =>
+            builder.UseMiddleware<ModelValidationExceptionMiddleware>();
     }
 
     public class ModelValidationExceptionMiddleware

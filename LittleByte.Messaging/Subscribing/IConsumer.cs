@@ -15,7 +15,7 @@ public abstract class Consumer<T> : IConsumer
 
     public Task ProcessMessageAsync(object message)
     {
-        var castMessage = (T) message;
+        var castMessage = (T)message;
         return ProcessMessageInternalAsync(castMessage);
     }
 

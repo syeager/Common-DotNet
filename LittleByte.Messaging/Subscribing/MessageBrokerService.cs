@@ -23,7 +23,7 @@ public abstract class MessageBrokerService : BackgroundService
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
         await InitializeAsync();
-        
+
         var consumers = consumerFactory.CreateConsumers();
         RegisterConsumers(consumers);
 
@@ -32,7 +32,7 @@ public abstract class MessageBrokerService : BackgroundService
 
     private void RegisterConsumers(IReadOnlyCollection<IConsumer> consumers)
     {
-        foreach (var consumer in consumers)
+        foreach(var consumer in consumers)
         {
             AddConsumer(consumer);
             registeredConsumers.Add(consumer.QueueName, consumer);

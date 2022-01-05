@@ -8,7 +8,7 @@ namespace LittleByte.Domain
     {
         ValueTask AddAsync(Valid<TEntity> entity);
         ValueTask DeleteAsync(TEntity entity);
-        
+
         ValueTask UpdateAsync(Valid<TEntity> entity);
         ValueTask SaveAsync();
     }

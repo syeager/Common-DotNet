@@ -13,7 +13,8 @@ namespace LittleByte.Extensions.AspNet.Extensions
             response.StatusCode = statusCode;
 
             await using var utf8Stream = new MemoryStream();
-            await JsonSerializer.SerializeAsync(utf8Stream, body, body.GetType(), new JsonSerializerOptions {PropertyNamingPolicy = JsonNamingPolicy.CamelCase});
+            await JsonSerializer.SerializeAsync(utf8Stream, body, body.GetType(),
+                new JsonSerializerOptions {PropertyNamingPolicy = JsonNamingPolicy.CamelCase});
             var json = Encoding.UTF8.GetString(utf8Stream.ToArray());
             response.ContentType = "application/json";
             await response.WriteAsync(json);

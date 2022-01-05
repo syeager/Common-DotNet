@@ -39,7 +39,7 @@ public static class AsyncExtensions
             // this is called by compiler generated methods when the
             // task has completed. Instead of returning a result, we 
             // just throw an exception.
-            if (IsCompleted) throw new OperationCanceledException();
+            if(IsCompleted) throw new OperationCanceledException();
             else throw new InvalidOperationException("The cancellation token has not yet been cancelled.");
         }
 
@@ -52,6 +52,7 @@ public static class AsyncExtensions
         // cancellation token.
         public void OnCompleted(Action continuation) =>
             CancellationToken.Register(continuation);
+
         public void UnsafeOnCompleted(Action continuation) =>
             CancellationToken.Register(continuation);
     }

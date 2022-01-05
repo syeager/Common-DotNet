@@ -10,7 +10,9 @@ public sealed class RabbitMqBroker : MessageBrokerService
     private IModel channel = null!;
     private IConnection connection = null!;
 
-    public RabbitMqBroker(IOptions<RabbitMqOptions> options, IMessageDeserializer messageDeserializer,
+    public RabbitMqBroker(
+        IOptions<RabbitMqOptions> options,
+        IMessageDeserializer messageDeserializer,
         IConsumerFactory consumerFactory)
         : base(consumerFactory, messageDeserializer)
     {
@@ -35,17 +37,17 @@ public sealed class RabbitMqBroker : MessageBrokerService
                 Connect();
                 connected = true;
             }
-            catch (Exception exception)
+            catch(Exception exception)
             {
                 Console.WriteLine($"Failed to connect to RabbitMQ: {exception.Message}");
             }
 
-            if (!connected)
+            if(!connected)
             {
                 await Task.Delay(TimeSpan.FromSeconds(10));
             }
-        } while (!connected);
-        
+        } while(!connected);
+
         Console.WriteLine("Connected to RabbitMQ");
     }
 
