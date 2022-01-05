@@ -6,9 +6,4 @@ namespace LittleByte.Core.Objects
     {
         public Guid Id { get; }
     }
-
-    public interface IStringId
-    {
-        public string Id { get; }
-    }
 }
