@@ -1,8 +1,8 @@
-﻿using Serilog.Events;
-using Serilog.Formatting;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using Serilog.Events;
+using Serilog.Formatting;
 
 namespace LittleByte.Logging.Formatters
 {

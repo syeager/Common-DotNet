@@ -1,7 +1,7 @@
-﻿using LittleByte.Core.Tasks;
-using Microsoft.Extensions.Hosting;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading;
+using LittleByte.Core.Tasks;
+using Microsoft.Extensions.Hosting;
 
 namespace LittleByte.Messaging.RabbitMq;
 

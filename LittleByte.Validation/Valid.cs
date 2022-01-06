@@ -18,7 +18,7 @@ namespace LittleByte.Validation
             Validation = validation;
         }
 
-        /// <exception cref="ValidationException"/>
+        /// <exception cref="ValidationException" />
         public T GetModelOrThrow()
         {
             if(!IsSuccess)
