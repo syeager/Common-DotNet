@@ -23,7 +23,7 @@ namespace LittleByte.Validation
     {
         public override Valid<TModel> Sign(TModel model)
         {
-            var failedModel = new Valid<TModel>(null, new ValidationResult(new[] { new ValidationFailure("", "") }));
+            var failedModel = new Valid<TModel>(null, new ValidationResult(new[] {new ValidationFailure("", "")}));
             return failedModel;
         }
     }

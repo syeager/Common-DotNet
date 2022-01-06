@@ -6,9 +6,8 @@ public abstract class Message
     {
         Body = body;
     }
-    
-    public abstract string QueueName { get; }
-    
-    public object Body { get; }
 
+    public abstract string QueueName { get; }
+
+    public object Body { get; }
 }

@@ -27,7 +27,7 @@ public abstract class MessagePublisher : BackgroundService
 
     public void Publish(Message message)
     {
-        if (!registeredQueues.Contains(message.QueueName)) AddQueue(message.QueueName);
+        if(!registeredQueues.Contains(message.QueueName)) AddQueue(message.QueueName);
 
         var messageData = messageSerializer.Serialize(message.Body);
         PublishInternal(message.QueueName, messageData);

@@ -9,7 +9,7 @@ public sealed class SimpleRetryStrategy : RetryStrategy
     {
         var remainingAttempts = settings.Attempts;
 
-        while (remainingAttempts >= 0)
+        while(remainingAttempts >= 0)
         {
             --remainingAttempts;
 
@@ -19,13 +19,13 @@ public sealed class SimpleRetryStrategy : RetryStrategy
                 action();
                 didSucceed = true;
             }
-            catch (Exception)
+            catch(Exception)
             {
                 // log
                 didSucceed = false;
             }
 
-            if (didSucceed) return;
+            if(didSucceed) return;
 
             await Task.Delay(settings.DelayMs);
         }
@@ -38,7 +38,7 @@ public sealed class SimpleRetryStrategy : RetryStrategy
         var remainingAttempts = settings.Attempts;
         var result = default(T);
 
-        while (remainingAttempts >= 0)
+        while(remainingAttempts >= 0)
         {
             --remainingAttempts;
 
@@ -48,13 +48,13 @@ public sealed class SimpleRetryStrategy : RetryStrategy
                 result = action();
                 didSucceed = true;
             }
-            catch (Exception)
+            catch(Exception)
             {
                 // log
                 didSucceed = false;
             }
 
-            if (didSucceed) return result;
+            if(didSucceed) return result;
 
             await Task.Delay(settings.DelayMs);
         }

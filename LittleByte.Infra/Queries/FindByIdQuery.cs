@@ -32,7 +32,7 @@ public class FindByIdQuery<TDomain, TEntity, TContext> : IFindByIdQuery<TDomain>
         {
             throw new NotFoundException(typeof(TDomain), id);
         }
-    
+
         var user = mapper.Map<TDomain>(dao);
         return user;
     }

@@ -10,7 +10,8 @@ namespace LittleByte.Extensions.AspNet.Middleware
 {
     public static class HttpExceptionMiddlewareExtension
     {
-        public static IApplicationBuilder UseHttpExceptions(this IApplicationBuilder builder) => builder.UseMiddleware<HttpExceptionMiddleware>();
+        public static IApplicationBuilder UseHttpExceptions(this IApplicationBuilder builder) =>
+            builder.UseMiddleware<HttpExceptionMiddleware>();
     }
 
     public class HttpExceptionMiddleware

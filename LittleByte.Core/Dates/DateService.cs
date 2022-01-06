@@ -19,6 +19,11 @@ namespace LittleByte.Core.Common
 {
     public static partial class S
     {
-        public static IDateService Date { get; [UsedImplicitly] set; } = new DateService();
+        public static IDateService Date
+        {
+            get;
+            [UsedImplicitly]
+            set;
+        } = new DateService();
     }
 }

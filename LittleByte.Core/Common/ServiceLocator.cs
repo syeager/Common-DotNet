@@ -1,9 +1,7 @@
 ﻿namespace LittleByte.Core.Common
 {
     /// <summary>
-    /// Service locator. Individual services will add properties to this partial class.
+    ///     Service locator. Individual services will add properties to this partial class.
     /// </summary>
-    public static partial class S
-    {
-    }
+    public static partial class S { }
 }

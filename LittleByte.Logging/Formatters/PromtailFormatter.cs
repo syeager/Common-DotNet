@@ -1,8 +1,8 @@
-﻿using Serilog.Events;
-using Serilog.Formatting;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using Serilog.Events;
+using Serilog.Formatting;
 
 namespace LittleByte.Logging.Formatters
 {
@@ -16,20 +16,20 @@ namespace LittleByte.Logging.Formatters
                 ["message_template"] = $"\"{TransformValue(logEvent.MessageTemplate.Text)}\"",
             };
 
-            if (logEvent.Exception != null)
+            if(logEvent.Exception != null)
             {
                 properties["exception_type"] = logEvent.Exception.GetType().FullName;
                 properties["exception_message"] = TransformValue(logEvent.Exception.Message);
                 properties["exception_stack_trace"] = TransformValue(logEvent.Exception.StackTrace);
             }
 
-            foreach (var property in logEvent.Properties)
+            foreach(var property in logEvent.Properties)
             {
                 properties[property.Key] = TransformValue(property.Value);
             }
 
             var builder = new StringBuilder();
-            foreach (var (key, value) in properties)
+            foreach(var (key, value) in properties)
             {
                 builder
                     .Append(key)

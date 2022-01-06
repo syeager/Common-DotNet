@@ -1,19 +1,19 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-	<PropertyGroup>
-		<TargetFramework>net6.0</TargetFramework>
-		<ImplicitUsings>enable</ImplicitUsings>
-		<Nullable>enable</Nullable>
-	</PropertyGroup>
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
 
-	<ItemGroup>
-		<ProjectReference Include="..\LittleByte.Core\LittleByte.Core.csproj" />
-		<ProjectReference Include="..\LittleByte.Logging\LittleByte.Logging.csproj" />
-	</ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\LittleByte.Core\LittleByte.Core.csproj"/>
+        <ProjectReference Include="..\LittleByte.Logging\LittleByte.Logging.csproj"/>
+    </ItemGroup>
 
-	<ItemGroup>
-		<PackageReference Include="AutoMapper" Version="10.1.1" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.0" />
-	</ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="AutoMapper" Version="10.1.1"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.0"/>
+    </ItemGroup>
 
 </Project>

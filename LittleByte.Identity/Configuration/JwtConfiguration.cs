@@ -12,7 +12,9 @@ namespace LittleByte.Identity.Configuration;
 
 public static class JwtConfiguration
 {
-    public static AuthenticationBuilder AddJwtAuthentication(this IServiceCollection services, IConfiguration configuration)
+    public static AuthenticationBuilder AddJwtAuthentication(
+        this IServiceCollection services,
+        IConfiguration configuration)
     {
         var options = services.BindAndGetOptions<JwtOptions>(configuration);
         return

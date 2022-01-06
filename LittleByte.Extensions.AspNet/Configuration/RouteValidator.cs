@@ -14,7 +14,9 @@ namespace LittleByte.Extensions.AspNet
     {
         private const string DefaultRouteRegex = @"^*$";
 
-        public static IApplicationBuilder ValidateRoutes(this IApplicationBuilder app, string routeRegex = DefaultRouteRegex)
+        public static IApplicationBuilder ValidateRoutes(
+            this IApplicationBuilder app,
+            string routeRegex = DefaultRouteRegex)
         {
             var actionProvider = app.ApplicationServices.GetService<IActionDescriptorCollectionProvider>()!;
             var regex = new Regex(routeRegex);
@@ -29,7 +31,9 @@ namespace LittleByte.Extensions.AspNet
             return app;
         }
 
-        private static ImmutableArray<ActionDescriptor> GetInvalidRouteNames(IActionDescriptorCollectionProvider actionProvider, Regex regex)
+        private static ImmutableArray<ActionDescriptor> GetInvalidRouteNames(
+            IActionDescriptorCollectionProvider actionProvider,
+            Regex regex)
         {
             var invalidRouteNames = actionProvider.ActionDescriptors.Items
                 .Where(x => x.AttributeRouteInfo?.Template != null && !regex.IsMatch(x.AttributeRouteInfo.Template))
@@ -40,7 +44,8 @@ namespace LittleByte.Extensions.AspNet
         private static void Fail(ImmutableArray<ActionDescriptor> invalidRoutes)
         {
             const string separator = "\n- ";
-            var invalideRouteNames = string.Join(separator, invalidRoutes.Select(rn => rn.AttributeRouteInfo!.Template!));
+            var invalideRouteNames =
+                string.Join(separator, invalidRoutes.Select(rn => rn.AttributeRouteInfo!.Template!));
             var message = $"Invalid route names: {invalidRoutes.Length}{separator}{invalideRouteNames}";
             throw new Exception(message);
         }

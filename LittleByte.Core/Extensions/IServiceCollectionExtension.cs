@@ -16,7 +16,8 @@ public static class IServiceCollectionExtension
             .AddScoped<TService2, TImplementation>(s => s.GetRequiredService<TImplementation>());
     }
 
-    public static IServiceCollection AddScoped<TService1, TService2, TService3, TImplementation>(this IServiceCollection @this)
+    public static IServiceCollection AddScoped<TService1, TService2, TService3, TImplementation>(
+        this IServiceCollection @this)
         where TService1 : class
         where TService2 : class
         where TService3 : class

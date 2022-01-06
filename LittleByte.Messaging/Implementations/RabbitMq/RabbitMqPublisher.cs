@@ -26,7 +26,7 @@ public sealed class RabbitMqPublisher : MessagePublisher
         connection = factory.CreateConnection();
         channel = connection.CreateModel();
     }
-    
+
     // TODO: Create retry functionality in core.
     protected override async Task InitializeAsync()
     {
@@ -38,20 +38,20 @@ public sealed class RabbitMqPublisher : MessagePublisher
                 Connect();
                 connected = true;
             }
-            catch (Exception exception)
+            catch(Exception exception)
             {
                 Console.WriteLine($"Failed to connect to RabbitMQ: {exception.Message}");
             }
 
-            if (!connected)
+            if(!connected)
             {
                 await Task.Delay(TimeSpan.FromSeconds(10));
             }
-        } while (!connected);
-        
+        } while(!connected);
+
         Console.WriteLine("Connected to RabbitMQ");
     }
-    
+
     protected override void AddQueueInternal(string queueName)
     {
         channel.QueueDeclare(queueName, true, false, false);

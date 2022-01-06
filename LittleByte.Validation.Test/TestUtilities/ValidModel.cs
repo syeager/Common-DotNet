@@ -13,7 +13,7 @@ namespace LittleByte.Validation.Test.TestUtilities
         public static Valid<T> Failed<T>()
             where T : class
         {
-            return new Valid<T>(null, new ValidationResult(new[] { new ValidationFailure("", "") }));
+            return new Valid<T>(null, new ValidationResult(new[] {new ValidationFailure("", "")}));
         }
     }
 }

@@ -10,7 +10,12 @@ public interface IEntity
 
 public abstract class Entity : IEntity
 {
-    public Guid Id { get; [UsedImplicitly] init; }
+    public Guid Id
+    {
+        get;
+        [UsedImplicitly]
+        init;
+    }
 
     public abstract string Identifier { get; }
 }

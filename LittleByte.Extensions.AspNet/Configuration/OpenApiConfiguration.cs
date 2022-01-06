@@ -7,7 +7,9 @@ namespace LittleByte.Extensions.AspNet
 {
     public static class OpenApiConfiguration
     {
-        public static IServiceCollection AddOpenApi(this IServiceCollection services, params OpenApiDocument[] documents)
+        public static IServiceCollection AddOpenApi(
+            this IServiceCollection services,
+            params OpenApiDocument[] documents)
         {
             const string scheme = JwtBearerDefaults.AuthenticationScheme;
 
@@ -22,6 +24,7 @@ namespace LittleByte.Extensions.AspNet
                         Description = document.Description,
                     });
                 }
+
                 swagger.AddSecurityDefinition(scheme, new OpenApiSecurityScheme
                 {
                     Name = "Authorization",
@@ -29,7 +32,8 @@ namespace LittleByte.Extensions.AspNet
                     Scheme = scheme,
                     BearerFormat = "JWT",
                     In = ParameterLocation.Header,
-                    Description = $"Enter {scheme} [space] and then your valid token in the text input below.\r\n\r\nExample: \"{scheme} eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9\"",
+                    Description =
+                        $"Enter {scheme} [space] and then your valid token in the text input below.\r\n\r\nExample: \"{scheme} eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9\"",
                 });
                 swagger.AddSecurityRequirement(new OpenApiSecurityRequirement
                 {

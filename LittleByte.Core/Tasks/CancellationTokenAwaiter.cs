@@ -9,7 +9,7 @@ namespace LittleByte.Core.Tasks;
 public static class AsyncExtensions
 {
     /// <summary>
-    /// Allows a cancellation token to be awaited.
+    ///     Allows a cancellation token to be awaited.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public static CancellationTokenAwaiter GetAwaiter(this CancellationToken ct)
@@ -22,7 +22,7 @@ public static class AsyncExtensions
     }
 
     /// <summary>
-    /// The awaiter for cancellation tokens.
+    ///     The awaiter for cancellation tokens.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public struct CancellationTokenAwaiter : INotifyCompletion, ICriticalNotifyCompletion
@@ -39,8 +39,8 @@ public static class AsyncExtensions
             // this is called by compiler generated methods when the
             // task has completed. Instead of returning a result, we 
             // just throw an exception.
-            if (IsCompleted) throw new OperationCanceledException();
-            else throw new InvalidOperationException("The cancellation token has not yet been cancelled.");
+            if(IsCompleted) throw new OperationCanceledException();
+            throw new InvalidOperationException("The cancellation token has not yet been cancelled.");
         }
 
         // called by compiler generated/.net internals to check
@@ -52,6 +52,7 @@ public static class AsyncExtensions
         // cancellation token.
         public void OnCompleted(Action continuation) =>
             CancellationToken.Register(continuation);
+
         public void UnsafeOnCompleted(Action continuation) =>
             CancellationToken.Register(continuation);
     }
