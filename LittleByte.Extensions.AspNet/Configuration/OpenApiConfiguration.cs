@@ -14,7 +14,7 @@ namespace LittleByte.Extensions.AspNet
                 .AddOpenApiDocument(options =>
                 {
                     const string scheme = JwtBearerDefaults.AuthenticationScheme;
-                    
+
                     options.Title = $"Articlib - {title}";
                     options.DocumentName = title;
                     options.OperationProcessors.Add(new OperationSecurityScopeProcessor(scheme));
