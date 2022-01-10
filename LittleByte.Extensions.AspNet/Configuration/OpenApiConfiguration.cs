@@ -1,62 +1,43 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.OpenApi.Models;
+using NSwag;
+using NSwag.Generation.Processors.Security;
 
 namespace LittleByte.Extensions.AspNet
 {
     public static class OpenApiConfiguration
     {
-        public static IServiceCollection AddOpenApi(
-            this IServiceCollection services,
-            params OpenApiDocument[] documents)
+        public static IServiceCollection AddOpenApi(this IServiceCollection services, string title)
         {
-            const string scheme = JwtBearerDefaults.AuthenticationScheme;
-
-            return services.AddSwaggerGen(swagger =>
-            {
-                foreach(var document in documents)
+            return services
+                .AddOpenApiDocument(options =>
                 {
-                    swagger.SwaggerDoc(document.Name, new OpenApiInfo
-                    {
-                        Version = $"v{document.Version}",
-                        Title = document.Title,
-                        Description = document.Description,
-                    });
-                }
-
-                swagger.AddSecurityDefinition(scheme, new OpenApiSecurityScheme
-                {
-                    Name = "Authorization",
-                    Type = SecuritySchemeType.ApiKey,
-                    Scheme = scheme,
-                    BearerFormat = "JWT",
-                    In = ParameterLocation.Header,
-                    Description =
-                        $"Enter {scheme} [space] and then your valid token in the text input below.\r\n\r\nExample: \"{scheme} eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9\"",
-                });
-                swagger.AddSecurityRequirement(new OpenApiSecurityRequirement
-                {
-                    {
+                    const string scheme = JwtBearerDefaults.AuthenticationScheme;
+                    
+                    options.Title = $"Articlib - {title}";
+                    options.DocumentName = title;
+                    options.OperationProcessors.Add(new OperationSecurityScopeProcessor(scheme));
+                    options.DocumentProcessors.Add(new SecurityDefinitionAppender(
+                        scheme,
                         new OpenApiSecurityScheme
                         {
-                            Reference = new OpenApiReference
-                            {
-                                Type = ReferenceType.SecurityScheme,
-                                Id = scheme
-                            }
-                        },
-                        new string[] { }
-                    }
+                            Type = OpenApiSecuritySchemeType.ApiKey,
+                            Name = "Authorization",
+                            In = OpenApiSecurityApiKeyLocation.Header,
+                            BearerFormat = "jwt",
+                            Scheme = scheme,
+                            Description =
+                                $"Enter {scheme} [space] and then your valid token in the text input below.\r\n\r\nExample: \"{scheme} eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9\"",
+                        }));
                 });
-            });
         }
 
-        public static IApplicationBuilder UseOpenApi(this IApplicationBuilder app, string title)
+        public static IApplicationBuilder UseOpenApi(this IApplicationBuilder app)
         {
             return app
-                .UseSwagger()
-                .UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", title));
+                .UseOpenApi(null)
+                .UseSwaggerUi3();
         }
     }
 }
