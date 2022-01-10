@@ -12,17 +12,18 @@ namespace LittleByte.Identity.Configuration;
 
 public static class JwtConfiguration
 {
-    public static AuthenticationBuilder AddJwtAuthentication(
+    public static IServiceCollection AddJwtAuthentication(
         this IServiceCollection services,
         IConfiguration configuration)
     {
         var options = services.BindAndGetOptions<JwtOptions>(configuration);
-        return
-            services
-                .AddTransient<SecurityTokenHandler, JwtSecurityTokenHandler>()
-                .AddTransient<ITokenGenerator, TokenGenerator>()
-                .AddTransient<ICredentialsGenerator, CredentialsGenerator>()
-                .AddJwtAuthentication(options);
+        services
+            .AddTransient<SecurityTokenHandler, JwtSecurityTokenHandler>()
+            .AddTransient<ITokenGenerator, TokenGenerator>()
+            .AddTransient<ICredentialsGenerator, CredentialsGenerator>()
+            .AddJwtAuthentication(options);
+
+        return services;
     }
 
     public static AuthenticationBuilder AddJwtAuthentication(this IServiceCollection services, JwtOptions jwtOptions)
