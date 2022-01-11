@@ -6,7 +6,7 @@ using LittleByte.Identity.Configuration;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 
-namespace LittleByte.Asp.Identity
+namespace LittleByte.Identity.Services
 {
     public interface ITokenGenerator
     {

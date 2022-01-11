@@ -4,7 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using NSwag;
 using NSwag.Generation.Processors.Security;
 
-namespace LittleByte.Extensions.AspNet
+namespace LittleByte.Extensions.AspNet.Configuration
 {
     public static class OpenApiConfiguration
     {

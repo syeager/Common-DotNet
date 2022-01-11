@@ -1,8 +1,9 @@
-﻿using Microsoft.Extensions.Options;
+﻿using LittleByte.Messaging.Serialization;
+using Microsoft.Extensions.Options;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 
-namespace LittleByte.Messaging.RabbitMq;
+namespace LittleByte.Messaging.Implementations.RabbitMq;
 
 public sealed class RabbitMqBroker : MessageBrokerService
 {

@@ -10,6 +10,6 @@ namespace LittleByte.Extensions.AspNet.Core
     [Route("[controller]")]
     public abstract class Controller : ControllerBase
     {
-        public Guid? UserId => HttpContext.GetUserID();
+        public Guid? UserId => HttpContext.GetUserId();
     }
 }

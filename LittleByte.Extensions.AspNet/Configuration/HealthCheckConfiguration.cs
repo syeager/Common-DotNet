@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 
-namespace LittleByte.Extensions.AspNet
+namespace LittleByte.Extensions.AspNet.Configuration
 {
     public static class HealthCheckConfiguration
     {

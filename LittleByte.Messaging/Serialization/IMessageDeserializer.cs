@@ -1,4 +1,4 @@
-﻿namespace LittleByte.Messaging;
+﻿namespace LittleByte.Messaging.Serialization;
 
 public interface IMessageDeserializer
 {

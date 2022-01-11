@@ -4,7 +4,7 @@ using System.Linq;
 using System.Reflection;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace LittleByte.Messaging.RabbitMq;
+namespace LittleByte.Messaging;
 
 public sealed class ReflectionConsumerFactory : IConsumerFactory
 {

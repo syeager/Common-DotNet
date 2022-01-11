@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace LittleByte.Extensions.AspNet
+namespace LittleByte.Extensions.AspNet.Configuration
 {
     // https://www.thinktecture.com/en/identity/samesite/prepare-your-identityserver/
     public static class SameSiteCookies

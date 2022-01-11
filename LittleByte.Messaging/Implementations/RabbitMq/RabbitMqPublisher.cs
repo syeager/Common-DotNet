@@ -1,8 +1,9 @@
-﻿using LittleByte.Messaging.RabbitMq;
+﻿using LittleByte.Messaging.Publishing;
+using LittleByte.Messaging.Serialization;
 using Microsoft.Extensions.Options;
 using RabbitMQ.Client;
 
-namespace LittleByte.Messaging;
+namespace LittleByte.Messaging.Implementations.RabbitMq;
 
 public sealed class RabbitMqPublisher : MessagePublisher
 {

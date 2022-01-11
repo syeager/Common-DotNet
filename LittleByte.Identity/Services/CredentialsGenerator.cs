@@ -1,7 +1,7 @@
 ﻿using System.Text;
 using Microsoft.IdentityModel.Tokens;
 
-namespace LittleByte.Asp.Identity;
+namespace LittleByte.Identity.Services;
 
 public interface ICredentialsGenerator
 {

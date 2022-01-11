@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 using LittleByte.Core.Common;
 
-namespace LittleByte.Validation.Test
+namespace LittleByte.Validation.Test.TestUtilities
 {
     public static class ValidationContextUtility
     {

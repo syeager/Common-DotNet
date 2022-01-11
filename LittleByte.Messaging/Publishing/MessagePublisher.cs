@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Threading;
 using LittleByte.Core.Tasks;
+using LittleByte.Messaging.Serialization;
 using Microsoft.Extensions.Hosting;
 
-namespace LittleByte.Messaging;
+namespace LittleByte.Messaging.Publishing;
 
 public abstract class MessagePublisher : BackgroundService
 {

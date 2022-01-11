@@ -1,4 +1,4 @@
-﻿namespace LittleByte.Extensions.AspNet
+﻿namespace LittleByte.Extensions.AspNet.Configuration
 {
     public readonly struct OpenApiDocument
     {

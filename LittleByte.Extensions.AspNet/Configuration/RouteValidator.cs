@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.Abstractions;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace LittleByte.Extensions.AspNet
+namespace LittleByte.Extensions.AspNet.Configuration
 {
     // TODO: Move to analyzer.
     public static class RouteValidator

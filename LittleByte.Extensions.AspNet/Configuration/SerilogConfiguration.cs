@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Serilog;
 
-namespace LittleByte.Extensions.AspNet;
+namespace LittleByte.Extensions.AspNet.Configuration;
 
 public static class SerilogConfiguration
 {

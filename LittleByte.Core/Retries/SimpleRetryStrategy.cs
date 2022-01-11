@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace LittleByte.Core;
+namespace LittleByte.Core.Retries;
 
 public sealed class SimpleRetryStrategy : RetryStrategy
 {

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace LittleByte.Messaging.RabbitMq;
+namespace LittleByte.Messaging;
 
 public interface IConsumerFactory
 {

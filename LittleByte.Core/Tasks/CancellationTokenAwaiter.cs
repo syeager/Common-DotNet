@@ -25,7 +25,7 @@ public static class AsyncExtensions
     ///     The awaiter for cancellation tokens.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public struct CancellationTokenAwaiter : INotifyCompletion, ICriticalNotifyCompletion
+    public struct CancellationTokenAwaiter : ICriticalNotifyCompletion
     {
         public CancellationTokenAwaiter(CancellationToken cancellationToken)
         {

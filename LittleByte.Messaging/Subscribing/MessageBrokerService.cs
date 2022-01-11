@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Threading;
 using LittleByte.Core.Tasks;
+using LittleByte.Messaging.Serialization;
 using Microsoft.Extensions.Hosting;
 
-namespace LittleByte.Messaging.RabbitMq;
+namespace LittleByte.Messaging;
 
 public abstract class MessageBrokerService : BackgroundService
 {

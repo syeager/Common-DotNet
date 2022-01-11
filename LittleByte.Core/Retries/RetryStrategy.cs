@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace LittleByte.Core;
+namespace LittleByte.Core.Retries;
 
 public record RetrySettings(int Attempts = 3, int DelayMs = 3000);
 

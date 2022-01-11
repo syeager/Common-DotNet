@@ -1,6 +1,9 @@
 ﻿using LittleByte.Configuration;
 using LittleByte.Core.Extensions;
-using LittleByte.Messaging.RabbitMq;
+using LittleByte.Messaging.Implementations.RabbitMq;
+using LittleByte.Messaging.Publishing;
+using LittleByte.Messaging.Serialization;
+using LittleByte.Messaging.Serialization.JsonText;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
