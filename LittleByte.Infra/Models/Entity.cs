@@ -1,10 +1,10 @@
 ﻿using JetBrains.Annotations;
+using LittleByte.Core.Objects;
 
 namespace LittleByte.Infra.Models;
 
-public interface IEntity
+public interface IEntity : IIdObject
 {
-    public Guid Id { get; }
     public string Identifier { get; }
 }
 
