@@ -8,11 +8,9 @@ namespace LittleByte.Infra.Queries;
 public interface IFindByIdQuery<TDomain>
 {
     public ValueTask<TDomain?> FindAsync(Guid id);
-    //public ValueTask<TDomain?> FindAsync(string id);
 }
 
 public class FindByIdQuery<TDomain, TEntity, TContext> : IFindByIdQuery<TDomain>
-    //where TEntity : class, IStringId
     where TEntity : class, IIdObject
     where TContext : DbContext
 {
@@ -36,16 +34,4 @@ public class FindByIdQuery<TDomain, TEntity, TContext> : IFindByIdQuery<TDomain>
         var user = mapper.Map<TDomain>(dao);
         return user;
     }
-
-    // public async ValueTask<TDomain?> FindAsync(string id)
-    // {
-    //     var dao = await dbContext.FindAsync<TEntity>(id);
-    //     if(dao == null)
-    //     {
-    //         throw new NotFoundException(typeof(TDomain), Guid.Parse(id));
-    //     }
-    //
-    //     var user = mapper.Map<TDomain>(dao);
-    //     return user;
-    // }
 }
