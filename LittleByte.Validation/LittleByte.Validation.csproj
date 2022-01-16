@@ -6,10 +6,10 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\LittleByte.Core\LittleByte.Core.csproj"/>
+        <ProjectReference Include="..\LittleByte.Core\LittleByte.Core.csproj" />
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="FluentValidation" Version="10.3.4"/>
+        <PackageReference Include="FluentValidation" Version="10.3.6" />
     </ItemGroup>
 </Project>

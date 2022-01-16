@@ -1,10 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <ItemGroup>
-        <ProjectReference Include="..\LittleByte.Configuration\LittleByte.Configuration.csproj"/>
-        <ProjectReference Include="..\LittleByte.Core\LittleByte.Core.csproj"/>
+        <ProjectReference Include="..\LittleByte.Configuration\LittleByte.Configuration.csproj" />
+        <ProjectReference Include="..\LittleByte.Core\LittleByte.Core.csproj" />
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.0"/>
+        <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.1" />
     </ItemGroup>
 </Project>
