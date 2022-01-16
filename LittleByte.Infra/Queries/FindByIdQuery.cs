@@ -1,37 +1,33 @@
-using AutoMapper;
-using LittleByte.Core.Exceptions;
 using LittleByte.Core.Objects;
-using Microsoft.EntityFrameworkCore;
+using LittleByte.Infra.Contexts;
 
 namespace LittleByte.Infra.Queries;
 
 public interface IFindByIdQuery<TDomain>
 {
     public ValueTask<TDomain?> FindAsync(Guid id);
+    public ValueTask<TDomain?> FindForEditAsync(Guid id);
+    public ValueTask<TDomain> FindRequiredAsync(Guid id);
+    public ValueTask<TDomain> FindRequiredForEditAsync(Guid id);
 }
 
 public class FindByIdQuery<TDomain, TEntity, TContext> : IFindByIdQuery<TDomain>
     where TEntity : class, IIdObject
-    where TContext : DbContext
+    where TContext : IDomainContext
 {
     private readonly TContext dbContext;
-    private readonly IMapper mapper;
 
-    public FindByIdQuery(TContext dbContext, IMapper mapper)
+    public FindByIdQuery(TContext dbContext)
     {
         this.dbContext = dbContext;
-        this.mapper = mapper;
     }
 
-    public async ValueTask<TDomain?> FindAsync(Guid id)
-    {
-        var dao = await dbContext.Set<TEntity>().FindAsync(id);
-        if(dao == null)
-        {
-            throw new NotFoundException(typeof(TDomain), id);
-        }
+    public ValueTask<TDomain?> FindAsync(Guid id) => dbContext.FindAsync<TDomain, TEntity>(id);
 
-        var user = mapper.Map<TDomain>(dao);
-        return user;
-    }
+    public ValueTask<TDomain?> FindForEditAsync(Guid id) => dbContext.FindForEditAsync<TDomain, TEntity>(id);
+
+    public ValueTask<TDomain> FindRequiredAsync(Guid id) => dbContext.FindRequiredAsync<TDomain, TEntity>(id);
+
+    public ValueTask<TDomain> FindRequiredForEditAsync(Guid id) =>
+        dbContext.FindRequiredForEditAsync<TDomain, TEntity>(id);
 }
