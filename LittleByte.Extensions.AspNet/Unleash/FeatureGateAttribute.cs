@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -26,7 +26,7 @@ public class FeatureGateAttribute : ActionFilterAttribute
             return next();
         }
 
-        context.Result = new NotFoundResult();
+        context.Result = new ForbidResult();
         return Task.CompletedTask;
     }
 }
