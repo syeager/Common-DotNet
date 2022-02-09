@@ -3,14 +3,15 @@ using Unleash;
 
 namespace LittleByte.Extensions.AspNet.Unleash;
 
-public record UnleashOptions(
-    string ApiToken,
-    string AppName,
-    string Environment,
-    string InstanceTag,
-    string ProjectId,
-    string UnleashApi)
+public class UnleashOptions
 {
+    public string ApiToken { get; init; } = null!;
+    public string AppName { get; init; } = null!;
+    public string Environment { get; init; } = null!;
+    public string InstanceTag { get; init; } = null!;
+    public string ProjectId { get; init; } = null!;
+    public string UnleashApi { get; init; } = null!;
+
     public static implicit operator UnleashSettings(UnleashOptions @this)
     {
         return new UnleashSettings

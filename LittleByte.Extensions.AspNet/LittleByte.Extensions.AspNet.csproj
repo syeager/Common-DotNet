@@ -1,5 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <ItemGroup>
+        <ProjectReference Include="..\LittleByte.Configuration\LittleByte.Configuration.csproj" />
         <ProjectReference Include="..\LittleByte.Core\LittleByte.Core.csproj" />
     </ItemGroup>
 
