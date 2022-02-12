@@ -1,4 +1,4 @@
-﻿using JetBrains.Annotations;
+using JetBrains.Annotations;
 using LittleByte.Core.Objects;
 
 namespace LittleByte.Infra.Models;
@@ -17,5 +17,5 @@ public abstract class Entity : IEntity
         init;
     }
 
-    public abstract string Identifier { get; }
+    public virtual string Identifier => Id.ToString();
 }
