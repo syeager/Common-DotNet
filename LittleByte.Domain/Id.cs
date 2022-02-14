@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 namespace LittleByte.Domain
 {
@@ -9,7 +9,7 @@ namespace LittleByte.Domain
         public static readonly Id<T> Empty = new(Guid.Empty);
 
         internal Id(Guid value) => Value = value;
-        internal Id(Guid? value = null) => Value = value == null ? Guid.NewGuid() : value.Value;
+        internal Id(Guid? value = null) => Value = value ?? Guid.NewGuid();
 
         public static implicit operator Guid(Id<T> id) => id.Value;
         public static implicit operator Id<T>(Guid guid) => new(guid);
