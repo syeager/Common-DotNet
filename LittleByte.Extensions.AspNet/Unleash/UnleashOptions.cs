@@ -5,6 +5,7 @@ namespace LittleByte.Extensions.AspNet.Unleash;
 
 public class UnleashOptions
 {
+    public bool UseAlwaysTrue { get; init; }
     public string ApiToken { get; init; } = null!;
     public string AppName { get; init; } = null!;
     public string Environment { get; init; } = null!;
