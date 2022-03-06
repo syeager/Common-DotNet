@@ -14,6 +14,7 @@ public interface IFindByIdQuery<TDomain>
 public class FindByIdQuery<TDomain, TEntity, TContext> : IFindByIdQuery<TDomain>
     where TEntity : class, IIdObject
     where TContext : IDomainContext
+    where TDomain : IIdObject
 {
     private readonly TContext dbContext;
 

@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+using AutoMapper;
+using AutoMapper.Internal;
 using LittleByte.Core.Exceptions;
 using LittleByte.Core.Objects;
 using Microsoft.AspNetCore.Identity;
@@ -11,15 +12,19 @@ namespace LittleByte.Infra.Contexts;
 public interface IDomainContext
 {
     ValueTask<TDomain?> FindAsync<TDomain, TEntity>(Guid id)
+        where TDomain : IIdObject
         where TEntity : class, IIdObject;
 
     ValueTask<TDomain?> FindForEditAsync<TDomain, TEntity>(Guid id)
+        where TDomain : IIdObject
         where TEntity : class, IIdObject;
 
     ValueTask<TDomain> FindRequiredAsync<TDomain, TEntity>(Guid id)
+        where TDomain : IIdObject
         where TEntity : class, IIdObject;
 
     ValueTask<TDomain> FindRequiredForEditAsync<TDomain, TEntity>(Guid id)
+        where TDomain : IIdObject
         where TEntity : class, IIdObject;
 }
 
@@ -28,37 +33,39 @@ public abstract class DomainContext<TContext, TUser, TRole> : IdentityDbContext<
     where TUser : IdentityUser<Guid>
     where TRole : IdentityRole<Guid>
 {
-    private record EntityMap(object Domain, object Entity);
+    private readonly Dictionary<Guid, IIdObject> modifiedDomainModels = new();
 
-    private readonly IMapper mapper;
-    private readonly Dictionary<Guid, EntityMap> entityMaps = new();
+    public IMapper Mapper { get; }
 
     protected DomainContext(IMapper mapper, DbContextOptions<TContext> options)
         : base(options)
     {
-        this.mapper = mapper;
+        Mapper = mapper;
     }
 
     public EntityEntry<TEntity> Add<TDomain, TEntity>(TDomain domain)
         where TEntity : class
     {
-        var entity = mapper.Map<TEntity>(domain);
+        var entity = Mapper.Map<TEntity>(domain);
         return Add(entity);
     }
 
     public ValueTask<TDomain?> FindAsync<TDomain, TEntity>(Guid id)
+        where TDomain : IIdObject
         where TEntity : class, IIdObject
     {
         return FindInternalAsync<TDomain, TEntity>(id, false);
     }
 
     public ValueTask<TDomain?> FindForEditAsync<TDomain, TEntity>(Guid id)
+        where TDomain : IIdObject
         where TEntity : class, IIdObject
     {
         return FindInternalAsync<TDomain, TEntity>(id, true);
     }
 
     public async ValueTask<TDomain> FindRequiredAsync<TDomain, TEntity>(Guid id)
+        where TDomain : IIdObject
         where TEntity : class, IIdObject
     {
         var domain = await FindAsync<TDomain, TEntity>(id);
@@ -71,6 +78,7 @@ public abstract class DomainContext<TContext, TUser, TRole> : IdentityDbContext<
     }
 
     public async ValueTask<TDomain> FindRequiredForEditAsync<TDomain, TEntity>(Guid id)
+        where TDomain : IIdObject
         where TEntity : class, IIdObject
     {
         var domain = await FindForEditAsync<TDomain, TEntity>(id);
@@ -83,36 +91,59 @@ public abstract class DomainContext<TContext, TUser, TRole> : IdentityDbContext<
     }
 
     private async ValueTask<TDomain?> FindInternalAsync<TDomain, TEntity>(Guid id, bool isEditable)
+        where TDomain : IIdObject
         where TEntity : class, IIdObject
     {
-        if(!entityMaps.TryGetValue(id, out var entityMap))
+        var entity = await Set<TEntity>()
+            .AsNoTrackingWithIdentityResolution()
+            .FirstOrDefaultAsync(e => e.Id == id);
+        if(entity is null)
         {
-            var query = isEditable
-                ? Set<TEntity>().AsTracking()
-                : Set<TEntity>();
-
-            var entity = await query.FirstOrDefaultAsync(e => e.Id == id);
-
-            if(entity is null)
-            {
-                return default;
-            }
-
-            var domain = mapper.Map<TDomain>(entity)!;
-            entityMap = new EntityMap(domain, entity);
-            entityMaps.Add(id, entityMap);
+            return default;
         }
 
-        return (TDomain)entityMap.Domain;
+        var domain = Mapper.Map<TDomain>(entity)!;
+
+        if(isEditable)
+        {
+            Update<TEntity>(domain);
+        }
+
+        return domain;
+    }
+
+    public void Update<TEntity>(IIdObject domain)
+    {
+        modifiedDomainModels[domain.Id] = domain;
+    }
+
+    public void Add<TEntity>(object domain)
+    {
+        var entity = Mapper.Map<TEntity>(domain)!;
+        Add(entity);
     }
 
     public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new())
     {
-        foreach(var (_, (domain, entity)) in entityMaps)
+        foreach(var (_, value) in modifiedDomainModels)
         {
-            mapper.Map(domain, entity);
+            var destinationType = GetEntityType(value);
+            var entity = Mapper.Map(value, destinationType);
+            Update(entity);
         }
 
         return base.SaveChangesAsync(cancellationToken);
+    }
+
+    private Type GetEntityType(IIdObject value)
+    {
+        var destinationType = ((IGlobalConfiguration)Mapper.ConfigurationProvider).GetAllTypeMaps()
+            .FirstOrDefault(tm => tm.SourceType == value.GetType())?.DestinationType;
+        if(destinationType is null)
+        {
+            throw new Exception(); // TODO
+        }
+
+        return destinationType;
     }
 }
