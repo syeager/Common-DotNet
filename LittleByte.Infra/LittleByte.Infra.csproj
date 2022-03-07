@@ -8,6 +8,7 @@
 
     <ItemGroup>
         <ProjectReference Include="..\LittleByte.Core\LittleByte.Core.csproj" />
+        <ProjectReference Include="..\LittleByte.Domain\LittleByte.Domain.csproj" />
         <ProjectReference Include="..\LittleByte.Logging\LittleByte.Logging.csproj" />
     </ItemGroup>
 

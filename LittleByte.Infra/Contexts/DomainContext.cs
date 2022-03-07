@@ -2,6 +2,7 @@ using AutoMapper;
 using AutoMapper.Internal;
 using LittleByte.Core.Exceptions;
 using LittleByte.Core.Objects;
+using LittleByte.Validation;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -11,19 +12,19 @@ namespace LittleByte.Infra.Contexts;
 
 public interface IDomainContext
 {
-    ValueTask<TDomain?> FindAsync<TDomain, TEntity>(Guid id)
+    ValueTask<Valid<TDomain>?> FindAsync<TDomain, TEntity>(Guid id)
         where TDomain : IIdObject
         where TEntity : class, IIdObject;
 
-    ValueTask<TDomain?> FindForEditAsync<TDomain, TEntity>(Guid id)
+    ValueTask<Valid<TDomain>?> FindForEditAsync<TDomain, TEntity>(Guid id)
         where TDomain : IIdObject
         where TEntity : class, IIdObject;
 
-    ValueTask<TDomain> FindRequiredAsync<TDomain, TEntity>(Guid id)
+    ValueTask<Valid<TDomain>> FindRequiredAsync<TDomain, TEntity>(Guid id)
         where TDomain : IIdObject
         where TEntity : class, IIdObject;
 
-    ValueTask<TDomain> FindRequiredForEditAsync<TDomain, TEntity>(Guid id)
+    ValueTask<Valid<TDomain>> FindRequiredForEditAsync<TDomain, TEntity>(Guid id)
         where TDomain : IIdObject
         where TEntity : class, IIdObject;
 }
@@ -33,7 +34,7 @@ public abstract class DomainContext<TContext, TUser, TRole> : IdentityDbContext<
     where TUser : IdentityUser<Guid>
     where TRole : IdentityRole<Guid>
 {
-    private readonly Dictionary<Guid, IIdObject> modifiedDomainModels = new();
+    private readonly Dictionary<Guid, object> trackedDomainModels = new();
 
     public IMapper Mapper { get; }
 
@@ -50,21 +51,21 @@ public abstract class DomainContext<TContext, TUser, TRole> : IdentityDbContext<
         return Add(entity);
     }
 
-    public ValueTask<TDomain?> FindAsync<TDomain, TEntity>(Guid id)
+    public ValueTask<Valid<TDomain>?> FindAsync<TDomain, TEntity>(Guid id)
         where TDomain : IIdObject
         where TEntity : class, IIdObject
     {
         return FindInternalAsync<TDomain, TEntity>(id, false);
     }
 
-    public ValueTask<TDomain?> FindForEditAsync<TDomain, TEntity>(Guid id)
+    public ValueTask<Valid<TDomain>?> FindForEditAsync<TDomain, TEntity>(Guid id)
         where TDomain : IIdObject
         where TEntity : class, IIdObject
     {
         return FindInternalAsync<TDomain, TEntity>(id, true);
     }
 
-    public async ValueTask<TDomain> FindRequiredAsync<TDomain, TEntity>(Guid id)
+    public async ValueTask<Valid<TDomain>> FindRequiredAsync<TDomain, TEntity>(Guid id)
         where TDomain : IIdObject
         where TEntity : class, IIdObject
     {
@@ -74,10 +75,10 @@ public abstract class DomainContext<TContext, TUser, TRole> : IdentityDbContext<
             throw new NotFoundException(typeof(TDomain), id);
         }
 
-        return domain;
+        return domain.Value;
     }
 
-    public async ValueTask<TDomain> FindRequiredForEditAsync<TDomain, TEntity>(Guid id)
+    public async ValueTask<Valid<TDomain>> FindRequiredForEditAsync<TDomain, TEntity>(Guid id)
         where TDomain : IIdObject
         where TEntity : class, IIdObject
     {
@@ -87,10 +88,10 @@ public abstract class DomainContext<TContext, TUser, TRole> : IdentityDbContext<
             throw new NotFoundException(typeof(TDomain), id);
         }
 
-        return domain;
+        return domain.Value;
     }
 
-    private async ValueTask<TDomain?> FindInternalAsync<TDomain, TEntity>(Guid id, bool isEditable)
+    private async ValueTask<Valid<TDomain>?> FindInternalAsync<TDomain, TEntity>(Guid id, bool isEditable)
         where TDomain : IIdObject
         where TEntity : class, IIdObject
     {
@@ -102,20 +103,26 @@ public abstract class DomainContext<TContext, TUser, TRole> : IdentityDbContext<
             return default;
         }
 
-        var domain = Mapper.Map<TDomain>(entity)!;
+        var domain = Mapper.Map<Valid<TDomain>>(entity);
 
         if(isEditable)
         {
-            Update<TEntity>(domain);
+            if(domain.IsSuccess)
+            {
+                Track(domain.GetModelOrThrow().Id, domain);
+            }
+            else
+            {
+                // TODO: Log.
+            }
         }
 
         return domain;
     }
 
-    public void Update<TEntity>(IIdObject domain)
-    {
-        modifiedDomainModels[domain.Id] = domain;
-    }
+    public void Track(Guid id, object domain) => trackedDomainModels[id] = domain;
+
+    public void Track(IIdObject domain) => Track(domain.Id, domain);
 
     public void Add<TEntity>(object domain)
     {
@@ -125,17 +132,17 @@ public abstract class DomainContext<TContext, TUser, TRole> : IdentityDbContext<
 
     public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new())
     {
-        foreach(var (_, value) in modifiedDomainModels)
+        foreach(var (_, value) in trackedDomainModels)
         {
             var destinationType = GetEntityType(value);
-            var entity = Mapper.Map(value, destinationType);
+            var entity = Mapper.Map(value, value.GetType(), destinationType);
             Update(entity);
         }
 
         return base.SaveChangesAsync(cancellationToken);
     }
 
-    private Type GetEntityType(IIdObject value)
+    private Type GetEntityType(object value)
     {
         var destinationType = ((IGlobalConfiguration)Mapper.ConfigurationProvider).GetAllTypeMaps()
             .FirstOrDefault(tm => tm.SourceType == value.GetType())?.DestinationType;

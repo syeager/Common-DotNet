@@ -1,14 +1,15 @@
 using LittleByte.Core.Objects;
 using LittleByte.Infra.Contexts;
+using LittleByte.Validation;
 
 namespace LittleByte.Infra.Queries;
 
 public interface IFindByIdQuery<TDomain>
 {
-    public ValueTask<TDomain?> FindAsync(Guid id);
-    public ValueTask<TDomain?> FindForEditAsync(Guid id);
-    public ValueTask<TDomain> FindRequiredAsync(Guid id);
-    public ValueTask<TDomain> FindRequiredForEditAsync(Guid id);
+    public ValueTask<Valid<TDomain>?> FindAsync(Guid id);
+    public ValueTask<Valid<TDomain>?> FindForEditAsync(Guid id);
+    public ValueTask<Valid<TDomain>> FindRequiredAsync(Guid id);
+    public ValueTask<Valid<TDomain>> FindRequiredForEditAsync(Guid id);
 }
 
 public class FindByIdQuery<TDomain, TEntity, TContext> : IFindByIdQuery<TDomain>
@@ -23,12 +24,12 @@ public class FindByIdQuery<TDomain, TEntity, TContext> : IFindByIdQuery<TDomain>
         this.dbContext = dbContext;
     }
 
-    public ValueTask<TDomain?> FindAsync(Guid id) => dbContext.FindAsync<TDomain, TEntity>(id);
+    public ValueTask<Valid<TDomain>?> FindAsync(Guid id) => dbContext.FindAsync<TDomain, TEntity>(id);
 
-    public ValueTask<TDomain?> FindForEditAsync(Guid id) => dbContext.FindForEditAsync<TDomain, TEntity>(id);
+    public ValueTask<Valid<TDomain>?> FindForEditAsync(Guid id) => dbContext.FindForEditAsync<TDomain, TEntity>(id);
 
-    public ValueTask<TDomain> FindRequiredAsync(Guid id) => dbContext.FindRequiredAsync<TDomain, TEntity>(id);
+    public ValueTask<Valid<TDomain>> FindRequiredAsync(Guid id) => dbContext.FindRequiredAsync<TDomain, TEntity>(id);
 
-    public ValueTask<TDomain> FindRequiredForEditAsync(Guid id) =>
+    public ValueTask<Valid<TDomain>> FindRequiredForEditAsync(Guid id) =>
         dbContext.FindRequiredForEditAsync<TDomain, TEntity>(id);
 }
