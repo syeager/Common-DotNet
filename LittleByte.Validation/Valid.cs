@@ -23,7 +23,7 @@ namespace LittleByte.Validation
         {
             if(!IsSuccess)
             {
-                throw new ValidationException($"Validation failure for '{typeof(T)}`.", Validation.Errors);
+                throw new ValidationException($"Validation failure for '{typeof(T)}'.", Validation.Errors);
             }
 
             return Model;
