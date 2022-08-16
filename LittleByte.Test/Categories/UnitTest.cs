@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
 
-namespace LittleByte.Validation.Test.Categories;
+namespace LittleByte.Test.Categories;
 
 [Category("unit")]
 public abstract class UnitTest { }
