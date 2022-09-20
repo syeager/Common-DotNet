@@ -1,0 +1,17 @@
+﻿using Serilog;
+
+namespace LittleByte.Common.Logging
+{
+    public sealed class NullDiagnosticContext : IDiagnosticContext
+    {
+        public void Set(string propertyName, object value, bool destructureObjects = false) { }
+        public void SetException(Exception exception) { }
+    }
+
+    public static class Logs
+    {
+        public static ILog Props(this ILogger _) => new Log();
+        public static ILog Props() => new Log();
+        public static IDiagnosticContext DiagnosticContext { get; set; } = new NullDiagnosticContext();
+    }
+}
