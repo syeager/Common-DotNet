@@ -1,33 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-    <PropertyGroup>
-        <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-        <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
-    </PropertyGroup>
+	<PropertyGroup>
+		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+		<AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+	</PropertyGroup>
 
-    <PropertyGroup Condition="'$(Configuration)'=='Local'">
-        <OutputPath>$(LittleByteCommon)</OutputPath>
-    </PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)'=='Local'">
+		<OutputPath>$(LittleByteCommon)</OutputPath>
+	</PropertyGroup>
 
-    <PropertyGroup>
-        <TargetFramework>net6.0</TargetFramework>
-        <LangVersion>10.0</LangVersion>
-        <Platforms>AnyCPU</Platforms>
-        <Configurations>Debug;Release;Local</Configurations>
-    </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<LangVersion>10.0</LangVersion>
+		<Platforms>AnyCPU</Platforms>
+		<Configurations>Debug;Release;Local</Configurations>
+	</PropertyGroup>
 
-    <PropertyGroup>
-        <Nullable>enable</Nullable>
-        <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-    </PropertyGroup>
+	<PropertyGroup>
+		<Nullable>enable</Nullable>
+		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+	</PropertyGroup>
 
-    <PropertyGroup>
-        <Authors>Steve Yeager</Authors>
-    </PropertyGroup>
+	<PropertyGroup>
+		<Authors>Steve Yeager</Authors>
+	</PropertyGroup>
 
-    <ItemGroup>
-        <PackageReference Include="JetBrains.Annotations" Version="2021.3.0"/>
-        <PackageReference Include="SerilogAnalyzer" Version="0.15.0"/>
-    </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="JetBrains.Annotations" Version="2022.1.0" />
+		<PackageReference Include="SerilogAnalyzer" Version="0.15.0" />
+	</ItemGroup>
 </Project>
