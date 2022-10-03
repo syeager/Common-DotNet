@@ -2,5 +2,5 @@
 
 public record Name(string Value)
 {
-    public static implicit operator string(Name name) => name.Value;
+    public override string ToString() => Value;
 }
