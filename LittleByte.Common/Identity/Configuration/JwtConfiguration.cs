@@ -1,4 +1,5 @@
-﻿using System.IdentityModel.Tokens.Jwt;
+using System.Diagnostics.CodeAnalysis;
+using System.IdentityModel.Tokens.Jwt;
 using System.Text;
 using LittleByte.Common.Configuration;
 using LittleByte.Common.Identity.Services;
@@ -12,6 +13,8 @@ namespace LittleByte.Common.Identity.Configuration;
 
 public static class JwtConfiguration
 {
+    // TODO: Need to enforce that this comes after .AddIdentity().
+    [SuppressMessage("ReSharper", "UnusedMethodReturnValue.Global")]
     public static IServiceCollection AddJwtAuthentication(
         this IServiceCollection services,
         IConfiguration configuration)
@@ -27,6 +30,7 @@ public static class JwtConfiguration
         return services;
     }
 
+    [SuppressMessage("ReSharper", "UnusedMethodReturnValue.Global")]
     public static AuthenticationBuilder AddJwtAuthentication(this IServiceCollection services, JwtOptions jwtOptions)
     {
         JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
