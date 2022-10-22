@@ -17,6 +17,7 @@ public static class JwtConfiguration
         IConfiguration configuration)
     {
         var options = services.BindAndGetOptions<JwtOptions>(configuration);
+
         services
             .AddTransient<SecurityTokenHandler, JwtSecurityTokenHandler>()
             .AddTransient<ITokenGenerator, TokenGenerator>()
@@ -46,12 +47,13 @@ public static class JwtConfiguration
                 var secretBytes = Encoding.UTF8.GetBytes(jwtOptions.Secret);
                 options.TokenValidationParameters = new TokenValidationParameters
                 {
-                    ValidateIssuerSigningKey = true,
-                    ValidateIssuer = true,
-                    ValidateAudience = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(secretBytes),
                     ValidAudience = jwtOptions.Audience,
                     ValidIssuer = jwtOptions.Issuer,
-                    IssuerSigningKey = new SymmetricSecurityKey(secretBytes)
+                    ValidateAudience = true,
+                    ValidateIssuer = true,
+                    ValidateIssuerSigningKey = true,
+                    ValidateLifetime = true
                 };
             });
     }
