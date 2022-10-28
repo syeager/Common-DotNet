@@ -1,12 +1,12 @@
-﻿using AutoMapper;
-using Microsoft.IdentityModel.Tokens;
-using System.Diagnostics.CodeAnalysis;
+﻿using System.Diagnostics.CodeAnalysis;
 using System.IdentityModel.Tokens.Jwt;
+using AutoMapper;
+using Microsoft.IdentityModel.Tokens;
 
 namespace LittleByte.Common.Identity.Mappings;
 
 [SuppressMessage("ReSharper", "ClassNeverInstantiated.Global")]
-public sealed class JwtSecurityTokenConverter : ITypeConverter<JwtSecurityToken, string>
+public sealed class JwtSecurityTokenConverter : ITypeConverter<JwtSecurityToken?, string?>
 {
     private readonly SecurityTokenHandler tokenHandler;
 
@@ -15,6 +15,10 @@ public sealed class JwtSecurityTokenConverter : ITypeConverter<JwtSecurityToken,
         this.tokenHandler = tokenHandler;
     }
 
-    public string Convert(JwtSecurityToken source, string destination, ResolutionContext context) =>
-        tokenHandler.WriteToken(source);
+    public string? Convert(JwtSecurityToken? source, string? destination, ResolutionContext context)
+    {
+        return source is null
+            ? null
+            : tokenHandler.WriteToken(source);
+    }
 }

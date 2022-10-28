@@ -9,6 +9,6 @@ internal sealed class IdentityProfile : Profile
 {
     public IdentityProfile()
     {
-        CreateMap<JwtSecurityToken, string>().ConvertUsing<JwtSecurityTokenConverter>();
+        CreateMap<JwtSecurityToken?, string?>().ConvertUsing<JwtSecurityTokenConverter>();
     }
 }
