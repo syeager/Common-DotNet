@@ -21,12 +21,18 @@ namespace LittleByte.Common.Validation
         /// <exception cref="ValidationException" />
         public T GetModelOrThrow()
         {
+            ThrowIfInvalid();
+            
+            return Model!;
+        }
+
+        /// <exception cref="ValidationException" />
+        public void ThrowIfInvalid()
+        {
             if(!IsSuccess)
             {
                 throw new ValidationException($"Validation failure for '{typeof(T)}'.", Validation.Errors);
             }
-
-            return Model;
         }
     }
 }
