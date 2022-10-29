@@ -1,17 +1,16 @@
 ﻿using Serilog;
 
-namespace LittleByte.Common.Logging
-{
-    public sealed class NullDiagnosticContext : IDiagnosticContext
-    {
-        public void Set(string propertyName, object value, bool destructureObjects = false) { }
-        public void SetException(Exception exception) { }
-    }
+namespace LittleByte.Common.Logging;
 
-    public static class Logs
+public static class Logs
+{
+    public const string DefaultTemplate =
+        "{Timestamp:HH:mm:ss}|{Level:u3}|{ClassName}.{MemberName}:{LineNumber}|{Message:lj}|{Properties:j}|{Exception}";
+
+    public static IDiagnosticContext DiagnosticContext { get; set; } = new NullDiagnosticContext();
+
+    public static ILog NewLogger(this object @this)
     {
-        public static ILog Props(this ILogger _) => new Log();
-        public static ILog Props() => new Log();
-        public static IDiagnosticContext DiagnosticContext { get; set; } = new NullDiagnosticContext();
+        return new Log(@this.GetType());
     }
 }
