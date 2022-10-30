@@ -4,8 +4,8 @@ namespace LittleByte.Common.AspNet.Responses
 {
     public class OkResponse : ApiResponse
     {
-        public OkResponse(HttpStatusCode statusCode, string? message = null)
-            : base(statusCode, message)
+        public OkResponse(string? message = null)
+            : base(HttpStatusCode.OK, message)
         {
         }
     }
