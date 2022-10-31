@@ -1,4 +1,4 @@
-using System.IdentityModel.Tokens.Jwt;
+﻿using System.IdentityModel.Tokens.Jwt;
 using LittleByte.Common.Identity.Services;
 using LittleByte.Common.Logging;
 using LittleByte.Common.Logging.Configuration;
@@ -27,6 +27,12 @@ public abstract class IntegrationTest : TestCategory
         SetupInternal(serviceCollection);
 
         services = serviceCollection.BuildServiceProvider();
+    }
+
+    [TearDown]
+    public virtual void TearDown()
+    {
+        services.Dispose();
     }
 
     private static void AddLogging(IServiceCollection serviceCollection)
