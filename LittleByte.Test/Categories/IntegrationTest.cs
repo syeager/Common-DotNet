@@ -1,4 +1,4 @@
-﻿using System.IdentityModel.Tokens.Jwt;
+using System.IdentityModel.Tokens.Jwt;
 using LittleByte.Common.Identity.Services;
 using LittleByte.Common.Logging;
 using LittleByte.Common.Logging.Configuration;
@@ -15,7 +15,7 @@ public abstract class IntegrationTest : TestCategory
 {
     protected ServiceProvider services = null!;
 
-    protected abstract void AddServices(IServiceCollection serviceCollection);
+    protected abstract void SetupInternal(IServiceCollection serviceCollection);
 
     [SetUp]
     public void SetUp()
@@ -24,7 +24,7 @@ public abstract class IntegrationTest : TestCategory
 
         AddLogging(serviceCollection);
         AddTokens(serviceCollection);
-        AddServices(serviceCollection);
+        SetupInternal(serviceCollection);
 
         services = serviceCollection.BuildServiceProvider();
     }
