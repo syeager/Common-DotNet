@@ -18,7 +18,7 @@ public abstract class IntegrationTest : TestCategory
     protected abstract void SetupInternal(IServiceCollection serviceCollection);
 
     [SetUp]
-    public void SetUp()
+    public virtual void SetUp()
     {
         var serviceCollection = new ServiceCollection();
 
