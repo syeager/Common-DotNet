@@ -12,5 +12,13 @@
 
             return list;
         }
+
+        public static void ForEach<T>(this IReadOnlyList<T> @this, Action<int, T> action)
+        {
+            for(var i = 0; i < @this.Count; ++i)
+            {
+                action(i, @this[i]);
+            }
+        }
     }
 }
