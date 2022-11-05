@@ -1,4 +1,6 @@
-﻿namespace LittleByte.Common.Infra.Models;
+﻿using AutoMapper;
+
+namespace LittleByte.Common.Infra.Models;
 
 public class PageResponse<T>
 {
@@ -15,6 +17,16 @@ public class PageResponse<T>
         TotalPages = totalPages;
         TotalResults = totalResults;
         Results = results;
+    }
+
+    public PageResponse<TTo> CastResults<TTo>(IMapper mapper)
+    {
+        return new(
+            PageSize,
+            Page,
+            TotalPages,
+            TotalResults,
+            Results.Select(o => mapper.Map<TTo>(o)).ToList());
     }
 
     public PageResponse<TTo> CastResults<TTo>(Func<T, TTo> castDelegate)
