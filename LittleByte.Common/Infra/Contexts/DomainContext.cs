@@ -46,6 +46,15 @@ public abstract class DomainContext<TContext, TUser, TRole> : IdentityDbContext<
         return Add(entity);
     }
 
+    public void AddRange<TDomain, TEntity>(IEnumerable<TDomain> domainList)
+        where TEntity : class
+    {
+        foreach(var domain in domainList)
+        {
+            Add<TDomain, TEntity>(domain);
+        }
+    }
+
     public ValueTask<TDomain?> FindAsync<TDomain, TEntity>(Guid id)
         where TEntity : class, IIdObject
     {
