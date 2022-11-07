@@ -10,7 +10,7 @@ public abstract class TestCategory
     {
         Log.Logger = new LoggerConfiguration()
             .Enrich.FromLogContext()
-            .Enrich.With<RemovePropertiesEnricher>()
+            .Enrich.With<RemoveSourceContextEnricher>()
             .WriteTo.Console(
                 outputTemplate: Logs.DefaultTemplate)
             .CreateLogger();
