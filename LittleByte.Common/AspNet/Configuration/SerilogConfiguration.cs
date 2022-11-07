@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using LittleByte.Common.Logging;
+using Microsoft.AspNetCore.Builder;
 using Serilog;
 
 namespace LittleByte.Common.AspNet.Configuration;
@@ -10,7 +11,7 @@ public static class SerilogConfiguration
         builder.Host.UseSerilog(
             (context, services, configuration) => configuration
                 .ReadFrom.Configuration(context.Configuration)
-                .ReadFrom.Services(services));
+                .ReadFrom.Services(services).Enrich.With<RemoveSourceContextEnricher>());
 
         return builder;
     }
