@@ -49,4 +49,7 @@ public abstract class IntegrationTest : TestCategory
             .AddTransient<ITokenGenerator, NullTokenGenerator>()
             .AddTransient<SecurityTokenHandler, JwtSecurityTokenHandler>();
     }
+
+    protected TService GetService<TService>()
+        where TService : notnull => services.GetRequiredService<TService>();
 }
