@@ -5,14 +5,9 @@ namespace LittleByte.Common.Logging;
 public class NullLogger<T> : ILogger<T>
 {
     public IDisposable BeginScope<TState>(TState state)
-    {
-        return new NullDisposable();
-    }
+        where TState : notnull => new NullDisposable();
 
-    public bool IsEnabled(LogLevel logLevel)
-    {
-        return true;
-    }
+    public bool IsEnabled(LogLevel logLevel) => true;
 
     public void Log<TState>(LogLevel logLevel,
                             EventId eventId,

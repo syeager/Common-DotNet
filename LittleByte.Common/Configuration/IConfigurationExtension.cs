@@ -7,7 +7,7 @@ namespace LittleByte.Common.Configuration
         public static T GetSection<T>(this IConfiguration configuration, string? key = null)
         {
             key ??= typeof(T).Name;
-            return configuration.GetSection(key).Get<T>();
+            return configuration.GetSection(key).Get<T>()!;
         }
 
         public static T? GetSectionOrNull<T>(this IConfiguration configuration, string? key = null)
