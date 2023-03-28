@@ -20,5 +20,13 @@
                 action(i, @this[i]);
             }
         }
+
+        public static async ValueTask ForEachAsync<T>(this IReadOnlyList<T> @this, Func<int, T, ValueTask> action)
+        {
+            for(var i = 0; i < @this.Count; ++i)
+            {
+                await action(i, @this[i]);
+            }
+        }
     }
 }
