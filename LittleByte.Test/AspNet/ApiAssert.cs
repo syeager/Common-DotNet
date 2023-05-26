@@ -6,6 +6,12 @@ namespace LittleByte.Test.AspNet;
 
 public static class ApiAssert
 {
+    public static void IsSuccess(ApiResponse response, HttpStatusCode expectedCode = HttpStatusCode.OK)
+    {
+        Assert.IsFalse(response.IsError);
+        Assert.AreEqual((int)expectedCode, response.StatusCode);
+    }
+
     public static void IsSuccess<T>(ApiResponse<T> response, HttpStatusCode expectedCode = HttpStatusCode.OK)
         where T : class
     {
