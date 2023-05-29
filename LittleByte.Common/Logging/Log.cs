@@ -10,6 +10,7 @@ public interface ILog : IDisposable
 {
     public ILog Push<TProperty>(object? value);
     public ILog Push<TProperty>(TProperty? value);
+    public ILog Push(ILoggable loggable);
     public ILog Push(string name, object? value);
     public ILog DiagnosticPush(string name, object? value);
 
@@ -30,15 +31,11 @@ internal sealed class Log : ILog
         className = contextType.Name;
     }
 
-    public ILog Push<TProperty>(TProperty? value)
-    {
-        return Push(typeof(TProperty).Name, value);
-    }
+    public ILog Push<TProperty>(TProperty? value) => Push(typeof(TProperty).Name, value);
 
-    public ILog Push<TProperty>(object? value)
-    {
-        return Push(typeof(TProperty).Name, value);
-    }
+    public ILog Push<TProperty>(object? value) => Push(typeof(TProperty).Name, value);
+
+    public ILog Push(ILoggable loggable) => Push(loggable.LogKey, loggable.LogValue);
 
     public ILog Push(string name, object? value)
     {
@@ -53,10 +50,7 @@ internal sealed class Log : ILog
         return Push(name, value);
     }
 
-    public void Dispose()
-    {
-        rootLogContext?.Dispose();
-    }
+    public void Dispose() => rootLogContext?.Dispose();
 
     public ILog Info(string message,
                      [CallerMemberName] string memberName = "",
