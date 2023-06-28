@@ -11,6 +11,13 @@ public static class Logs
 
     public static ILog NewLogger(this object @this)
     {
-        return new Log(@this.GetType());
+        var log = new Log(@this.GetType());
+
+        if(@this is ILoggable loggable)
+        {
+            log.Push(loggable);
+        }
+
+        return log;
     }
 }

@@ -1,8 +1,12 @@
-﻿namespace LittleByte.Common.Domain;
+﻿using LittleByte.Common.Logging;
 
-public abstract class DomainModel<T>
+namespace LittleByte.Common.Domain;
+
+public abstract class DomainModel<T> : ILoggable
 {
     public Id<T> Id { get; }
+    public string LogKey => $"{GetType().Name}.{nameof(Id)}";
+    public string LogValue => Id.ToString();
 
     protected DomainModel(Id<T> id)
     {
