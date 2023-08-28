@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Net;
 using LittleByte.Common.AspNet.Extensions;
 using Microsoft.AspNetCore.Mvc;
 
@@ -6,11 +7,14 @@ namespace LittleByte.Common.AspNet.Responses;
 
 public class ApiResponse : IActionResult
 {
-    public bool IsError { get; }
-    public string? Message { get; }
+    [Required]
     public int StatusCode { get; }
+    [Required]
+    public bool IsError { get; }
+    [Required]
+    public string Message { get; }
 
-    public ApiResponse(HttpStatusCode statusCode, string? message = null)
+    public ApiResponse(HttpStatusCode statusCode, string message = "")
     {
         StatusCode = (int)statusCode;
         IsError = StatusCode >= 400;
@@ -27,7 +31,7 @@ public class ApiResponse<T> : ApiResponse where T : class
 {
     public T? Obj { get; }
 
-    public ApiResponse(HttpStatusCode statusCode, T? obj, string? message = null)
+    public ApiResponse(HttpStatusCode statusCode, T? obj, string message = "")
         : base(statusCode, message)
     {
         Obj = obj;
