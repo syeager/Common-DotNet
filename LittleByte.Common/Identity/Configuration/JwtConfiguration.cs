@@ -1,6 +1,9 @@
 using System.Diagnostics.CodeAnalysis;
 using System.IdentityModel.Tokens.Jwt;
+using System.Net;
 using System.Text;
+using LittleByte.Common.AspNet.Extensions;
+using LittleByte.Common.AspNet.Responses;
 using LittleByte.Common.Configuration;
 using LittleByte.Common.Identity.Services;
 using Microsoft.AspNetCore.Authentication;
@@ -58,6 +61,18 @@ public static class JwtConfiguration
                     ValidateIssuer = true,
                     ValidateIssuerSigningKey = true,
                     ValidateLifetime = true
+                };
+                options.Events = new JwtBearerEvents
+                {
+                    OnChallenge = async context =>
+                    {
+                        context.HandleResponse();
+                        if (context.AuthenticateFailure != null)
+                        {
+                            var result = new ApiResponse(HttpStatusCode.Unauthorized, context.AuthenticateFailure.Message);
+                            await context.Response.WriteJsonAsync(result, (int)HttpStatusCode.Unauthorized);
+                        }
+                    }
                 };
             });
     }
