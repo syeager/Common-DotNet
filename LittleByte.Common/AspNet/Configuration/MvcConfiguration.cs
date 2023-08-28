@@ -1,4 +1,5 @@
-﻿using FluentValidation;
+﻿using System.Diagnostics.CodeAnalysis;
+using FluentValidation;
 using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
@@ -8,6 +9,7 @@ namespace LittleByte.Common.AspNet.Configuration;
 
 public static class MvcConfiguration
 {
+    [SuppressMessage("ReSharper", "UnusedMethodReturnValue.Global")]
     public static IMvcBuilder ThrowValidationExceptions(this IMvcBuilder @this) =>
         @this.ConfigureApiBehaviorOptions(options => options.InvalidModelStateResponseFactory = CreateException);
 
@@ -16,7 +18,7 @@ public static class MvcConfiguration
 
     private static IEnumerable<ValidationFailure> CollectFailures(ModelStateDictionary modelStates) =>
         modelStates
-            .Where(pair => pair.Value != null)
+            .Where(pair => pair.Value?.Errors != null)
             .SelectMany(CreateFailures);
 
     private static IEnumerable<ValidationFailure> CreateFailures(KeyValuePair<string, ModelStateEntry?> pair)
