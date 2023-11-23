@@ -9,7 +9,8 @@
 
 	<ItemGroup>
 		<PackageReference Include="FluentValidation" Version="11.8.1" />
-		<PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="7.0.3" />
+		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.0" />
+		<PackageReference Include="NSwag.AspNetCore" Version="13.20.0" />
 	</ItemGroup>
 
 	<ItemGroup>

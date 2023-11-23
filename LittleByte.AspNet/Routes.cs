@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 
-namespace LittleByte.Common.AspNet.Core;
+namespace LittleByte.AspNet;
 
 [SuppressMessage("ReSharper", "PartialTypeWithSinglePart")]
 public static partial class Routes

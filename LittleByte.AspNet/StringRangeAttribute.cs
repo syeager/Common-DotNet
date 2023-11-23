@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace LittleByte.Common.AspNet.Attributes;
+namespace LittleByte.AspNet;
 
 public class StringRangeAttribute : StringLengthAttribute
 {

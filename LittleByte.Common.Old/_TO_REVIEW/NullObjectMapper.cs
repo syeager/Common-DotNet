@@ -1,7 +1,7 @@
 ﻿using System.Linq.Expressions;
 using AutoMapper;
 
-namespace LittleByte.Common.AspNet.AutoMapper;
+namespace LittleByte.Common.Old._TO_REVIEW;
 
 public class NullObjectMapper : IMapper
 {

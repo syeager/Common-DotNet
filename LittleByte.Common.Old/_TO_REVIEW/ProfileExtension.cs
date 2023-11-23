@@ -1,6 +1,6 @@
 using AutoMapper;
 
-namespace LittleByte.Common.AspNet.AutoMapper;
+namespace LittleByte.Common.Old._TO_REVIEW;
 
 public static class ProfileExtension
 {
@@ -16,7 +16,7 @@ public static class ProfileExtension
         @this.CreateMap<T1, T2>().ConvertUsing<TMap>();
         @this.CreateMap<T2, T1>().ConvertUsing<TMap>();
     }
-    
+
     public static void MapBothConvertOne<T1, T2, TMap>(this Profile @this)
         where TMap : ITypeConverter<T1, T2>
     {

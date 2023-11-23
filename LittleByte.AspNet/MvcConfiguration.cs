@@ -3,23 +3,28 @@ using FluentValidation;
 using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
-using Microsoft.Extensions.DependencyInjection;
 
-namespace LittleByte.Common.AspNet.Configuration;
+namespace LittleByte.AspNet;
 
 public static class MvcConfiguration
 {
     [SuppressMessage("ReSharper", "UnusedMethodReturnValue.Global")]
-    public static IMvcBuilder ThrowValidationExceptions(this IMvcBuilder @this) =>
-        @this.ConfigureApiBehaviorOptions(options => options.InvalidModelStateResponseFactory = CreateException);
+    public static IMvcBuilder ThrowValidationExceptions(this IMvcBuilder @this)
+    {
+        return @this.ConfigureApiBehaviorOptions(options => options.InvalidModelStateResponseFactory = CreateException);
+    }
 
-    private static IActionResult CreateException(ActionContext context) =>
+    private static IActionResult CreateException(ActionContext context)
+    {
         throw new ValidationException("Validation errors", CollectFailures(context.ModelState));
+    }
 
-    private static IEnumerable<ValidationFailure> CollectFailures(ModelStateDictionary modelStates) =>
-        modelStates
+    private static IEnumerable<ValidationFailure> CollectFailures(ModelStateDictionary modelStates)
+    {
+        return modelStates
             .Where(pair => pair.Value?.Errors != null)
             .SelectMany(CreateFailures);
+    }
 
     private static IEnumerable<ValidationFailure> CreateFailures(KeyValuePair<string, ModelStateEntry?> pair)
     {
