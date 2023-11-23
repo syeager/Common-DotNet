@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 
-namespace LittleByte.Common.Extensions;
+namespace LittleByte.Common;
 
 public static class IServiceProviderExtension
 {
