@@ -15,7 +15,7 @@ namespace LittleByte.Common.AspNet.Configuration
                 {
                     const string scheme = JwtBearerDefaults.AuthenticationScheme;
 
-                    options.Title = $"Articlib - {title}";
+                    options.Title = title;
                     options.DocumentName = title;
                     options.OperationProcessors.Add(new OperationSecurityScopeProcessor(scheme));
                     options.DocumentProcessors.Add(new SecurityDefinitionAppender(

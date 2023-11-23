@@ -42,9 +42,9 @@ namespace LittleByte.Common.AspNet.Configuration
         private static void Fail(ImmutableArray<ActionDescriptor> invalidRoutes)
         {
             const string separator = "\n- ";
-            var invalideRouteNames =
+            var invalidRouteNames =
                 string.Join(separator, invalidRoutes.Select(rn => rn.AttributeRouteInfo!.Template!));
-            var message = $"Invalid route names: {invalidRoutes.Length}{separator}{invalideRouteNames}";
+            var message = $"Invalid route names: {invalidRoutes.Length}{separator}{invalidRouteNames}";
             throw new Exception(message);
         }
     }
