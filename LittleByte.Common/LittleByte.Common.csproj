@@ -1,8 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<ItemGroup>
-	  <Compile Remove="Messaging\**" />
-	  <EmbeddedResource Remove="Messaging\**" />
-	  <None Remove="Messaging\**" />
+		<Compile Remove="Messaging\**" />
+		<EmbeddedResource Remove="Messaging\**" />
+		<None Remove="Messaging\**" />
 	</ItemGroup>
 	<ItemGroup>
 		<AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
