@@ -13,9 +13,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LittleByte.Common", "Little
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LittleByte.Test", "LittleByte.Test\LittleByte.Test.csproj", "{E600FBBF-EDE8-4758-BD83-6897F0DE971F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LittleByte.AspNet", "LittleByte.AspNet\LittleByte.AspNet.csproj", "{829E0FEE-8B69-46F6-8AD0-1BD6C8E20C01}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LittleByte.AspNet", "LittleByte.AspNet\LittleByte.AspNet.csproj", "{829E0FEE-8B69-46F6-8AD0-1BD6C8E20C01}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LittleByte.Common.Old", "LittleByte.Common.Old\LittleByte.Common.Old.csproj", "{DC7E29D0-5F6A-4A2D-8633-78B00ED15A4C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LittleByte.Common.Old", "LittleByte.Common.Old\LittleByte.Common.Old.csproj", "{DC7E29D0-5F6A-4A2D-8633-78B00ED15A4C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LittleByte.AutoMapper", "LittleByte.AutoMapper\LittleByte.AutoMapper.csproj", "{C227F41F-7742-498D-A184-9D33D61AA22A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -48,6 +50,12 @@ Global
 		{DC7E29D0-5F6A-4A2D-8633-78B00ED15A4C}.Local|Any CPU.Build.0 = Local|Any CPU
 		{DC7E29D0-5F6A-4A2D-8633-78B00ED15A4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DC7E29D0-5F6A-4A2D-8633-78B00ED15A4C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C227F41F-7742-498D-A184-9D33D61AA22A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C227F41F-7742-498D-A184-9D33D61AA22A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C227F41F-7742-498D-A184-9D33D61AA22A}.Local|Any CPU.ActiveCfg = Local|Any CPU
+		{C227F41F-7742-498D-A184-9D33D61AA22A}.Local|Any CPU.Build.0 = Local|Any CPU
+		{C227F41F-7742-498D-A184-9D33D61AA22A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C227F41F-7742-498D-A184-9D33D61AA22A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

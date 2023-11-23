@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 
-namespace LittleByte.Common.AspNet.AutoMapper;
+namespace LittleByte.AutoMapper;
 
 public static class IMapperExtension
 {
