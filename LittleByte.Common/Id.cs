@@ -1,4 +1,4 @@
-namespace LittleByte.Common.Domain;
+namespace LittleByte.Common;
 
 public readonly struct Id<T> : IEquatable<Id<T>>
 {

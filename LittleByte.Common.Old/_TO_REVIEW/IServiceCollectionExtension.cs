@@ -1,7 +1,8 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using LittleByte.Common.Old._TO_REVIEW;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace LittleByte.Common.Extensions;
+namespace LittleByte.Common.Old._TO_REVIEW;
 
 public static class IServiceCollectionExtension
 {

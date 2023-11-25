@@ -1,6 +1,6 @@
 ﻿using LittleByte.Common.Logging;
 
-namespace LittleByte.Common.Domain;
+namespace LittleByte.Common;
 
 public abstract class DomainModel<T> : ILoggable
 {

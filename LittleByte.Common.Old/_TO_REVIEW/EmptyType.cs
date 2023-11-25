@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 
-namespace LittleByte.Common;
+namespace LittleByte.Common.Old._TO_REVIEW;
 
 /// <summary>
 ///     Only used for shortening lines when a generic type is necessary for the compiler but the code doesn't require it

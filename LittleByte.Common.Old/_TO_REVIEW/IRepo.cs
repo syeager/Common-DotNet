@@ -1,6 +1,6 @@
 ﻿using LittleByte.Common.Validation;
 
-namespace LittleByte.Common.Domain
+namespace LittleByte.Common.Old._TO_REVIEW
 {
     public interface IRepo<TEntity>
     {
