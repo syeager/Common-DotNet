@@ -1,9 +1,9 @@
 ﻿using Serilog.Core;
 using Serilog.Events;
 
-namespace LittleByte.Common.Logging;
+namespace LittleByte.Serilog;
 
-public class RemoveSourceContextEnricher : ILogEventEnricher
+public sealed class RemoveSourceContextEnricher : ILogEventEnricher
 {
     public void Enrich(LogEvent logEvent, ILogEventPropertyFactory propertyFactory)
     {

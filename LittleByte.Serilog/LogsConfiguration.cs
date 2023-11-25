@@ -1,7 +1,7 @@
+using LittleByte.Common.Logging;
 using Microsoft.Extensions.DependencyInjection;
-using Serilog;
 
-namespace LittleByte.Common.Logging.Configuration;
+namespace LittleByte.Serilog;
 
 public static class LogsConfiguration
 {

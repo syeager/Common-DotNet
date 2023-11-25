@@ -1,12 +1,10 @@
-﻿using AutoMapper;
-using LittleByte.Common.Exceptions;
-using LittleByte.Common.Objects;
+﻿using LittleByte.Common;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 
-namespace LittleByte.Common.Infra.Contexts;
+namespace LittleByte.EntityFramework;
 
 public interface IDomainContext
 {
@@ -28,31 +26,14 @@ public abstract class DomainContext<TContext, TUser, TRole> : IdentityDbContext<
     where TUser : IdentityUser<Guid>
     where TRole : IdentityRole<Guid>
 {
-    private record EntityMap(object Domain, object Entity);
+    private readonly Dictionary<Guid, EntityMap> entityMaps = new();
 
     private readonly IMapper mapper;
-    private readonly Dictionary<Guid, EntityMap> entityMaps = new();
 
     protected DomainContext(IMapper mapper, DbContextOptions<TContext> options)
         : base(options)
     {
         this.mapper = mapper;
-    }
-
-    public EntityEntry<TEntity> Add<TDomain, TEntity>(TDomain domain)
-        where TEntity : class
-    {
-        var entity = mapper.Map<TEntity>(domain);
-        return Add(entity);
-    }
-
-    public void AddRange<TDomain, TEntity>(IEnumerable<TDomain> domainList)
-        where TEntity : class
-    {
-        foreach(var domain in domainList)
-        {
-            Add<TDomain, TEntity>(domain);
-        }
     }
 
     public ValueTask<TDomain?> FindAsync<TDomain, TEntity>(Guid id)
@@ -91,6 +72,22 @@ public abstract class DomainContext<TContext, TUser, TRole> : IdentityDbContext<
         return domain;
     }
 
+    public EntityEntry<TEntity> Add<TDomain, TEntity>(TDomain domain)
+        where TEntity : class
+    {
+        var entity = mapper.Map<TEntity>(domain);
+        return Add(entity);
+    }
+
+    public void AddRange<TDomain, TEntity>(IEnumerable<TDomain> domainList)
+        where TEntity : class
+    {
+        foreach(var domain in domainList)
+        {
+            Add<TDomain, TEntity>(domain);
+        }
+    }
+
     private async ValueTask<TDomain?> FindInternalAsync<TDomain, TEntity>(Guid id, bool isEditable)
         where TEntity : class, IIdObject
     {
@@ -124,4 +121,6 @@ public abstract class DomainContext<TContext, TUser, TRole> : IdentityDbContext<
 
         return base.SaveChangesAsync(cancellationToken);
     }
+
+    private record EntityMap(object Domain, object Entity);
 }
