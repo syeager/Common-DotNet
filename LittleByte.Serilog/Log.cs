@@ -4,6 +4,7 @@ using System.Runtime.CompilerServices;
 using LittleByte.Common.Logging;
 using Serilog;
 using Serilog.Context;
+using Serilog.Extensions.Hosting;
 
 namespace LittleByte.Serilog;
 
@@ -12,6 +13,9 @@ internal sealed class Log : ILog
     private readonly string className;
     private readonly ILogger logger;
     private IDisposable? rootLogContext;
+
+    public static IDiagnosticContext DiagnosticContext { get; set; } = NullDiagnosticContext.Instance;
+    public static ILog Create(Type forType) => new Log(forType);
 
     public Log(Type contextType)
     {
@@ -43,7 +47,7 @@ internal sealed class Log : ILog
 
     public ILog DiagnosticPush(string name, object? value)
     {
-        Logs.DiagnosticContext.Set(name, value);
+        DiagnosticContext.Set(name, value);
         return Push(name, value);
     }
 

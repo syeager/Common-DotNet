@@ -4,13 +4,15 @@ namespace LittleByte.Common.Logging;
 
 public interface ILog : IDisposable
 {
-    public ILog Push<TProperty>(object? value);
-    public ILog Push<TProperty>(TProperty? value);
-    public ILog Push(ILoggable loggable);
-    public ILog Push(string name, object? value);
-    public ILog DiagnosticPush(string name, object? value);
+    static abstract ILog Create(Type forType);
 
-    public ILog Info(
+    ILog Push<TProperty>(object? value);
+    ILog Push<TProperty>(TProperty? value);
+    ILog Push(ILoggable loggable);
+    ILog Push(string name, object? value);
+    ILog DiagnosticPush(string name, object? value);
+
+    ILog Info(
         string message,
         [CallerMemberName] string memberName = "",
         [CallerLineNumber] int lineNumber = -1

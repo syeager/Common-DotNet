@@ -1,17 +1,14 @@
-﻿using Serilog;
-
-namespace LittleByte.Common.Logging;
+﻿namespace LittleByte.Common.Logging;
 
 public static class Logs
 {
-    public const string DefaultTemplate =
-        "{Timestamp:HH:mm:ss}|{Level:u3}|{ClassName}.{MemberName}:{LineNumber}|{Message:lj}|{Properties:j}|{Exception}{NewLine}";
+    public delegate ILog LogFactoryDelegate(Type forType);
 
-    public static IDiagnosticContext DiagnosticContext { get; set; } = new NullDiagnosticContext();
+    public static LogFactoryDelegate LogFactory { get; set; } = _ => NullLog.Instance;
 
     public static ILog NewLogger(this object @this)
     {
-        var log = new Log(@this.GetType());
+        var log = LogFactory(@this.GetType());
 
         if(@this is ILoggable loggable)
         {

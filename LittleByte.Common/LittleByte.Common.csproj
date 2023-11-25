@@ -1,4 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+	  <LangVersion>11</LangVersion>
+	</PropertyGroup>
 	<ItemGroup>
 		<Compile Remove="Messaging\**" />
 		<EmbeddedResource Remove="Messaging\**" />
