@@ -1,8 +1,7 @@
-﻿using AutoMapper;
+﻿using System.IdentityModel.Tokens.Jwt;
 using JetBrains.Annotations;
-using System.IdentityModel.Tokens.Jwt;
 
-namespace LittleByte.Common.Identity.Mappings;
+namespace LittleByte.AspNet;
 
 [UsedImplicitly]
 internal sealed class IdentityProfile : Profile

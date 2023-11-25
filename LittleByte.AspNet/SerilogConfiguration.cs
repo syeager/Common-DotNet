@@ -1,8 +1,4 @@
-﻿using LittleByte.Common.Logging;
-using Microsoft.AspNetCore.Builder;
-using Serilog;
-
-namespace LittleByte.Common.AspNet.Configuration;
+﻿namespace LittleByte.AspNet;
 
 public static class SerilogConfiguration
 {

@@ -1,9 +1,8 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.IdentityModel.Tokens.Jwt;
-using AutoMapper;
 using Microsoft.IdentityModel.Tokens;
 
-namespace LittleByte.Common.Identity.Mappings;
+namespace LittleByte.AspNet;
 
 [SuppressMessage("ReSharper", "ClassNeverInstantiated.Global")]
 public sealed class JwtSecurityTokenConverter : ITypeConverter<JwtSecurityToken?, string?>

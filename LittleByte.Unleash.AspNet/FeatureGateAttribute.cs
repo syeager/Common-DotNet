@@ -1,9 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-using Microsoft.Extensions.DependencyInjection;
 using Unleash;
 
-namespace LittleByte.Common.AspNet.Unleash;
+namespace LittleByte.Unleash.AspNet;
 
 public class FeatureGateAttribute : ActionFilterAttribute
 {

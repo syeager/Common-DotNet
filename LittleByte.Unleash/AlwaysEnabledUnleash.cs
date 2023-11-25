@@ -2,7 +2,7 @@ using Unleash;
 using Unleash.Internal;
 using Unleash.Variants;
 
-namespace LittleByte.Common.AspNet.Unleash;
+namespace LittleByte.Unleash;
 
 public sealed class AlwaysEnabledUnleash : IUnleash
 {
