@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace LittleByte.Common.Validation;
+namespace LittleByte.Validation;
 
 public interface IModelValidator<TModel>
 {
@@ -20,7 +20,7 @@ public class ModelValidator<TModel> : AbstractValidator<TModel>, IModelValidator
     public void SignOrThrow(TModel model)
     {
         var result = Sign(model);
-        if(!result.IsSuccess)
+        if (!result.IsSuccess)
         {
             throw new ValidationException(
                 $"Validation failure for '{typeof(TModel)}' using validator '{GetType()}.",

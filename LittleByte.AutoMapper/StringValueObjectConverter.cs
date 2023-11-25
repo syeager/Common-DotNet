@@ -1,13 +1,7 @@
 ﻿using AutoMapper;
+using LittleByte.Common;
 
-namespace LittleByte.Common.Domain;
-
-public abstract record StringValueObject(string Value)
-{
-    public override string ToString() => Value;
-
-    public static implicit operator string(StringValueObject @this) => @this.Value;
-}
+namespace LittleByte.AutoMapper;
 
 public sealed class StringValueObjectConverter : ITypeConverter<StringValueObject, string>
 {

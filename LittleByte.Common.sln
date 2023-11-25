@@ -17,15 +17,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LittleByte.AspNet", "Little
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LittleByte.Common.Old", "LittleByte.Common.Old\LittleByte.Common.Old.csproj", "{DC7E29D0-5F6A-4A2D-8633-78B00ED15A4C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LittleByte.AutoMapper", "LittleByte.AutoMapper\LittleByte.AutoMapper.csproj", "{C227F41F-7742-498D-A184-9D33D61AA22A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LittleByte.AutoMapper", "LittleByte.AutoMapper\LittleByte.AutoMapper.csproj", "{C227F41F-7742-498D-A184-9D33D61AA22A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LittleByte.Unleash", "LittleByte.Unleash\LittleByte.Unleash.csproj", "{F0C24C57-5E32-4769-BB22-13E13D5920C4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LittleByte.Unleash", "LittleByte.Unleash\LittleByte.Unleash.csproj", "{F0C24C57-5E32-4769-BB22-13E13D5920C4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LittleByte.Unleash.AspNet", "LittleByte.Unleash.AspNet\LittleByte.Unleash.AspNet.csproj", "{9AD3D6C4-3C11-4A8D-888E-8E5560E4B732}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LittleByte.Unleash.AspNet", "LittleByte.Unleash.AspNet\LittleByte.Unleash.AspNet.csproj", "{9AD3D6C4-3C11-4A8D-888E-8E5560E4B732}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LittleByte.EntityFramework", "LittleByte.EntityFramework\LittleByte.EntityFramework.csproj", "{0A4B9833-2F49-4242-9F62-A82F504B826E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LittleByte.EntityFramework", "LittleByte.EntityFramework\LittleByte.EntityFramework.csproj", "{0A4B9833-2F49-4242-9F62-A82F504B826E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LittleByte.Serilog", "LittleByte.Serilog\LittleByte.Serilog.csproj", "{0E4DF174-7399-4F55-B72E-EC95E118C2F1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LittleByte.Serilog", "LittleByte.Serilog\LittleByte.Serilog.csproj", "{0E4DF174-7399-4F55-B72E-EC95E118C2F1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LittleByte.Validation", "LittleByte.Validation\LittleByte.Validation.csproj", "{C4612907-F246-4BDB-B4EA-5B7A8242EE2B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -88,6 +90,12 @@ Global
 		{0E4DF174-7399-4F55-B72E-EC95E118C2F1}.Local|Any CPU.Build.0 = Local|Any CPU
 		{0E4DF174-7399-4F55-B72E-EC95E118C2F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0E4DF174-7399-4F55-B72E-EC95E118C2F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C4612907-F246-4BDB-B4EA-5B7A8242EE2B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4612907-F246-4BDB-B4EA-5B7A8242EE2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4612907-F246-4BDB-B4EA-5B7A8242EE2B}.Local|Any CPU.ActiveCfg = Local|Any CPU
+		{C4612907-F246-4BDB-B4EA-5B7A8242EE2B}.Local|Any CPU.Build.0 = Local|Any CPU
+		{C4612907-F246-4BDB-B4EA-5B7A8242EE2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4612907-F246-4BDB-B4EA-5B7A8242EE2B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
