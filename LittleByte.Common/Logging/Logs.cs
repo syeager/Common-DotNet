@@ -10,7 +10,7 @@ public static class Logs
     {
         var log = LogFactory(@this.GetType());
 
-        if(@this is ILoggable loggable)
+        if(@this is ILoggableKeyValue loggable)
         {
             log.Push(loggable);
         }

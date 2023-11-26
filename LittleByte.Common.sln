@@ -29,6 +29,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LittleByte.Serilog", "Littl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LittleByte.Validation", "LittleByte.Validation\LittleByte.Validation.csproj", "{C4612907-F246-4BDB-B4EA-5B7A8242EE2B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LittleByte.PubSub", "LittleByte.PubSub\LittleByte.PubSub.csproj", "{FEE0569B-9384-4C85-8FEA-6A23479635F4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -96,6 +98,12 @@ Global
 		{C4612907-F246-4BDB-B4EA-5B7A8242EE2B}.Local|Any CPU.Build.0 = Local|Any CPU
 		{C4612907-F246-4BDB-B4EA-5B7A8242EE2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C4612907-F246-4BDB-B4EA-5B7A8242EE2B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FEE0569B-9384-4C85-8FEA-6A23479635F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FEE0569B-9384-4C85-8FEA-6A23479635F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FEE0569B-9384-4C85-8FEA-6A23479635F4}.Local|Any CPU.ActiveCfg = Local|Any CPU
+		{FEE0569B-9384-4C85-8FEA-6A23479635F4}.Local|Any CPU.Build.0 = Local|Any CPU
+		{FEE0569B-9384-4C85-8FEA-6A23479635F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FEE0569B-9384-4C85-8FEA-6A23479635F4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

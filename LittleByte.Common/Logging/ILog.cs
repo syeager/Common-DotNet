@@ -6,14 +6,42 @@ public interface ILog : IDisposable
 {
     static abstract ILog Create(Type forType);
 
-    ILog Push<TProperty>(object? value);
-    ILog Push<TProperty>(TProperty? value);
-    ILog Push(ILoggable loggable);
+    ILog Push(ILoggableKeyValue loggable, string? keyPrefix = null);
+    ILog Push(ILoggableProperties loggable, string? keyPrefix = null);
     ILog Push(string name, object? value);
-    ILog DiagnosticPush(string name, object? value);
+    ILog ContextPush(ILoggableKeyValue loggable, string? keyPrefix = null);
+    ILog ContextPush(ILoggableProperties loggable, string? keyPrefix = null);
+    ILog ContextPush(string name, object? value);
+
+    ILog Write(
+        LogLevel level,
+        string message,
+        Exception? exception = null,
+        [CallerMemberName] string memberName = "",
+        [CallerLineNumber] int lineNumber = -1
+    );
+
+    ILog Debug(
+        string message,
+        [CallerMemberName] string memberName = "",
+        [CallerLineNumber] int lineNumber = -1
+    );
 
     ILog Info(
         string message,
+        [CallerMemberName] string memberName = "",
+        [CallerLineNumber] int lineNumber = -1
+    );
+
+    ILog Warn(
+        string message,
+        [CallerMemberName] string memberName = "",
+        [CallerLineNumber] int lineNumber = -1
+    );
+
+    ILog Error(
+        string message,
+        Exception? exception = null,
         [CallerMemberName] string memberName = "",
         [CallerLineNumber] int lineNumber = -1
     );

@@ -9,8 +9,8 @@ public sealed class NullLog : ILog
     public void Dispose() {}
     public ILog Push<TProperty>(object? value) => this;
     public ILog Push<TProperty>(TProperty? value) => this;
-    public ILog Push(ILoggable loggable) => this;
+    public ILog Push(ILoggableKeyValue loggable) => this;
     public ILog Push(string name, object? value) => this;
-    public ILog DiagnosticPush(string name, object? value) => this;
+    public ILog ContextPush(string name, object? value) => this;
     public ILog Info(string message, string memberName = "", int lineNumber = -1) => this;
 }

@@ -2,7 +2,7 @@
 
 namespace LittleByte.Common;
 
-public abstract class DomainModel<T> : ILoggable
+public abstract class DomainModel<T> : ILoggableKeyValue
 {
     public Id<T> Id { get; }
     public string LogKey => $"{GetType().Name}.{nameof(Id)}";

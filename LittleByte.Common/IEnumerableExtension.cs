@@ -1,17 +1,20 @@
-﻿namespace LittleByte.Common.Extensions;
+﻿namespace LittleByte.Common;
 
 public static class IEnumerableExtension
 {
-    public static IEnumerable<TSource> WhereNotNull<TSource>(this IEnumerable<TSource?> enumerable)
-    {
-        return enumerable.Where(x => x != null)!;
-    }
+    public static IEnumerable<TSource> WhereNotNull<TSource>(this IEnumerable<TSource?> @this)
+        => @this.Where(x => x is not null)!;
 
-    public static IEnumerable<TResult> SelectNotNull<TSource, TResult>(
-        this IEnumerable<TSource?> enumerable,
-        Func<TSource, TResult> selector
-    )
+    public static IEnumerable<TResult> SelectNotNull<TSource, TResult>(this IEnumerable<TSource?> @this, Func<TSource, TResult> selector)
+        => @this.WhereNotNull().Select(selector);
+
+    public static void ForEach<TSource>(this IEnumerable<TSource?> @this, Action<TSource?, int> action)
     {
-        return enumerable.WhereNotNull().Select(selector);
+        var count = 0;
+        foreach (var entry in @this)
+        {
+            action(entry, count);
+            ++count;
+        }
     }
 }
