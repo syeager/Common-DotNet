@@ -5,7 +5,7 @@ namespace LittleByte.PubSub;
 public interface IEvent : ILoggableProperties
 {
     public Guid Id { get; }
-    public DateTime FiredTime { get; }
+    public DateTimeOffset FiredTime { get; }
     public object Data { get; }
 }
 
@@ -14,11 +14,11 @@ public interface IEvent<out T> : IEvent
     new T Data { get; }
 }
 
-public sealed record Event<T>(Guid Id, DateTime FiredTime, T Data) : IEvent<T>
+public sealed record Event<T>(Guid Id, DateTimeOffset FiredTime, T Data) : IEvent<T>
 {
     object IEvent.Data => Data!;
 
-    public static Event<T> Create(T data, DateTime firedTime)
+    public static Event<T> Create(T data, DateTimeOffset firedTime)
         => new(Guid.NewGuid(), firedTime, data);
 
     public IEnumerable<LogProperty> Properties()

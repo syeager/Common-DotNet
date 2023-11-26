@@ -27,24 +27,25 @@ internal sealed class Log : ILog
     }
 
     [DebuggerHidden]
-    public static ILog Create(Type forType)
-    {
-        return new Log(forType);
-    }
-
+    public static ILog Create(Type forType) => new Log(forType);
     [DebuggerHidden]
     public void Dispose() => rootLogContext?.Dispose();
-
     [DebuggerHidden]
-    public ILog Push(ILoggableKeyValue loggable)
-    {
-        return Push(loggable.LogKey, loggable.LogValue);
-    }
+    public ILog Push(ILoggableKeyValue loggable) => Push(loggable.LogKey, loggable.LogValue);
+    [DebuggerHidden]
+    public ILog Push(ILoggableKeyValue loggable, string keyPrefix) => Push($"{keyPrefix}.{loggable.LogValue}", loggable.LogValue);
 
     [DebuggerHidden]
     public ILog Push(ILoggableProperties loggable)
     {
         loggable.Properties().ForEach((p, _) => Push(p.Key, p.Value));
+        return this;
+    }
+
+    [DebuggerHidden]
+    public ILog Push(ILoggableProperties loggable, string keyPrefix)
+    {
+        loggable.Properties().ForEach((p, _) => Push($"{keyPrefix}.{p.Key}", p.Value));
         return this;
     }
 
@@ -57,19 +58,21 @@ internal sealed class Log : ILog
     }
 
     [DebuggerHidden]
-    public ILog ContextPush(ILoggableKeyValue loggable)
-    {
-        return ContextPush(loggable.LogKey, loggable.LogValue);
-    }
+    public ILog ContextPush(ILoggableKeyValue loggable) => ContextPush(loggable.LogKey, loggable.LogValue);
+    [DebuggerHidden]
+    public ILog ContextPush(ILoggableKeyValue loggable, string keyPrefix) => ContextPush($"{keyPrefix}.{loggable.LogKey}", loggable.LogValue);
 
     [DebuggerHidden]
     public ILog ContextPush(ILoggableProperties loggable)
     {
-        foreach (var (key, value) in loggable.Properties())
-        {
-            ContextPush(key, value);
-        }
+        loggable.Properties().ForEach(p => ContextPush(p.Key, p.Value));
+        return this;
+    }
 
+    [DebuggerHidden]
+    public ILog ContextPush(ILoggableProperties loggable, string keyPrefix)
+    {
+        loggable.Properties().ForEach(p => ContextPush($"{keyPrefix}.{p.Key}", p.Value));
         return this;
     }
 
@@ -101,7 +104,6 @@ internal sealed class Log : ILog
 
     [DebuggerHidden]
     public ILog Error(string message, Exception? exception = null, [CallerMemberName] string memberName = "", [CallerLineNumber] int lineNumber = -1) => Write(LogLevel.Error, message, exception, memberName, lineNumber);
-
 
     [DebuggerHidden]
     private static LogEventLevel ToSerilog(LogLevel level)

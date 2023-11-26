@@ -17,4 +17,12 @@ public static class IEnumerableExtension
             ++count;
         }
     }
+
+    public static void ForEach<TSource>(this IEnumerable<TSource?> @this, Action<TSource?> action)
+    {
+        foreach (var entry in @this)
+        {
+            action(entry);
+        }
+    }
 }

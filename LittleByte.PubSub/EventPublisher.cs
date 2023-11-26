@@ -6,7 +6,7 @@ namespace LittleByte.PubSub;
 
 public interface IEventPublisher
 {
-    ValueTask<EventPublishResult> PublishAsync<TData>(object initiator, TData eventData, DateTime now, CancellationToken cancellationToken);
+    ValueTask<EventPublishResult> PublishAsync<TData>(object initiator, TData eventData, DateTimeOffset now, CancellationToken cancellationToken);
 }
 
 public sealed class EventPublisher : IEventPublisher
@@ -20,7 +20,7 @@ public sealed class EventPublisher : IEventPublisher
         log = this.NewLogger();
     }
 
-    public async ValueTask<EventPublishResult> PublishAsync<TData>(object initiator, TData eventData, DateTime now, CancellationToken cancellationToken)
+    public async ValueTask<EventPublishResult> PublishAsync<TData>(object initiator, TData eventData, DateTimeOffset now, CancellationToken cancellationToken)
     {
         var @event = Event<TData>.Create(eventData, now);
         log

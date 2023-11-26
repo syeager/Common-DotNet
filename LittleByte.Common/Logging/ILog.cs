@@ -6,11 +6,15 @@ public interface ILog : IDisposable
 {
     static abstract ILog Create(Type forType);
 
-    ILog Push(ILoggableKeyValue loggable, string? keyPrefix = null);
-    ILog Push(ILoggableProperties loggable, string? keyPrefix = null);
+    ILog Push(ILoggableKeyValue loggable);
+    ILog Push(ILoggableKeyValue loggable, string keyPrefix);
+    ILog Push(ILoggableProperties loggable);
+    ILog Push(ILoggableProperties loggable, string keyPrefix);
     ILog Push(string name, object? value);
-    ILog ContextPush(ILoggableKeyValue loggable, string? keyPrefix = null);
-    ILog ContextPush(ILoggableProperties loggable, string? keyPrefix = null);
+    ILog ContextPush(ILoggableKeyValue loggable);
+    ILog ContextPush(ILoggableKeyValue loggable, string keyPrefix);
+    ILog ContextPush(ILoggableProperties loggable);
+    ILog ContextPush(ILoggableProperties loggable, string keyPrefix);
     ILog ContextPush(string name, object? value);
 
     ILog Write(

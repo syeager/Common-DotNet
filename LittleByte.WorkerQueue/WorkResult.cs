@@ -1,6 +1,8 @@
-﻿namespace LittleByte.Common.WorkerQueue
+﻿using LittleByte.Common.Logging;
+
+namespace LittleByte.WorkerQueue
 {
-    public readonly struct WorkResult
+    public readonly struct WorkResult : ILoggableProperties
     {
         public enum Statuses
         {
@@ -28,5 +30,11 @@
         public static WorkResult Successful(long durationMs, string message = "") => new(Statuses.Successful, message, durationMs);
 
         public override string ToString() => $"{Status} in {DurationMs}ms with message '{Message}'.";
+        public IEnumerable<LogProperty> Properties()
+        {
+            yield return new("WorkResult.Status", Status);
+            yield return new("WorkResult.Message", Message);
+            yield return new("WorkResult.Duration", DurationMs);
+        }
     }
 }

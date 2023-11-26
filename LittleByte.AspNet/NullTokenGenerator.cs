@@ -1,9 +1,9 @@
 ﻿using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 
-namespace LittleByte.Common.Identity.Services;
+namespace LittleByte.AspNet;
 
-public class NullTokenGenerator : ITokenGenerator
+public sealed class NullTokenGenerator : ITokenGenerator
 {
     public JwtSecurityToken GenerateJwt(IEnumerable<Claim> claims)
     {

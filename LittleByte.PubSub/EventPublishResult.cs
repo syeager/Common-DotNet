@@ -2,7 +2,7 @@
 
 namespace LittleByte.PubSub;
 
-public readonly record struct EventPublishResult(object Initiator, DateTime StartTime, int SuccessfulSubscribers,
+public readonly record struct EventPublishResult(object Initiator, DateTimeOffset StartTime, int SuccessfulSubscribers,
     int TotalSubscribers) : ILoggableProperties
 {
     public IEnumerable<LogProperty> Properties()

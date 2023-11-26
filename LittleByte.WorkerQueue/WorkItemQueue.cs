@@ -1,6 +1,6 @@
 ﻿using System.Threading.Channels;
 
-namespace LittleByte.Common.WorkerQueue
+namespace LittleByte.WorkerQueue
 {
     public interface IWorkItemPusher
     {
@@ -26,7 +26,7 @@ namespace LittleByte.Common.WorkerQueue
         public ValueTask PushAsync(WorkItem workItem, CancellationToken stoppingToken) => channel.Writer.WriteAsync(workItem, stoppingToken);
         public async ValueTask PushAsync(IEnumerable<WorkItem> workItems, CancellationToken stoppingToken)
         {
-            foreach(var workItem in workItems)
+            foreach (var workItem in workItems)
             {
                 await PushAsync(workItem, stoppingToken);
             }
