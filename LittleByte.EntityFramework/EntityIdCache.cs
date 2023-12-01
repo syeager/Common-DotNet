@@ -1,4 +1,6 @@
-﻿namespace LittleByte.EntityFramework;
+﻿using LittleByte.Common.Logging;
+
+namespace LittleByte.EntityFramework;
 
 public interface IEntityIdReadCache
 {
@@ -14,7 +16,12 @@ public interface IEntityIdWriteCache : IEntityIdReadCache
 public class EntityIdCache : IEntityIdWriteCache
 {
     private readonly Dictionary<string, Guid> cache = new();
-    private readonly ILogger logger = Log.ForContext<EntityIdCache>();
+    private readonly ILog log;
+
+    public EntityIdCache()
+    {
+        log = this.NewLogger();
+    }
 
     public void Add(IEntity entity)
     {
@@ -23,9 +30,9 @@ public class EntityIdCache : IEntityIdWriteCache
 
     public void Add(string identifier, Guid id)
     {
-        logger
-            .ForContext("Entity.Id", id)
-            .ForContext("Entity.Identifier", identifier)
+        log
+            .Push("Entity.Id", id)
+            .Push("Entity.Identifier", identifier)
             .Debug("Cache entry Id");
         cache[identifier] = id;
     }
