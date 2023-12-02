@@ -1,8 +1,6 @@
-﻿using System.Linq;
-using FluentValidation.Results;
-using NUnit.Framework;
+﻿using FluentValidation.Results;
 
-namespace LittleByte.Test.Validation;
+namespace LittleByte.Validation.Test;
 
 public static class ValidationResultExtension
 {

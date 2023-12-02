@@ -1,8 +1,6 @@
 ﻿using System.Net;
-using LittleByte.Common.AspNet.Responses;
-using NUnit.Framework;
 
-namespace LittleByte.Test.AspNet;
+namespace LittleByte.AspNet.Test;
 
 public static class ApiAssert
 {

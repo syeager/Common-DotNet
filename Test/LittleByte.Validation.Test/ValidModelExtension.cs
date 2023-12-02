@@ -1,7 +1,4 @@
-using LittleByte.Common.Validation;
-using NUnit.Framework;
-
-namespace LittleByte.Test.Validation
+namespace LittleByte.Validation.Test
 {
     public static class ValidModelExtension
     {

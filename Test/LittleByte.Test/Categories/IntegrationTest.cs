@@ -1,12 +1,6 @@
-﻿using System.IdentityModel.Tokens.Jwt;
-using LittleByte.Common.Identity.Services;
-using LittleByte.Common.Logging;
-using LittleByte.Common.Logging.Configuration;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Microsoft.IdentityModel.Tokens;
 using NUnit.Framework;
-using Serilog;
 
 namespace LittleByte.Test.Categories;
 
@@ -51,5 +45,8 @@ public abstract class IntegrationTest : TestCategory
     }
 
     protected TService GetService<TService>()
-        where TService : notnull => services.GetRequiredService<TService>();
+        where TService : notnull
+    {
+        return services.GetRequiredService<TService>();
+    }
 }

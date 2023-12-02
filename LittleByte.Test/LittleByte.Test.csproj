@@ -1,7 +1,0 @@
-<Project Sdk="Microsoft.NET.Sdk">
-	<ItemGroup>
-        <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="7.0.4" />
-        <PackageReference Include="NSubstitute" Version="5.0.0" />
-        <PackageReference Include="NUnit" Version="3.13.3" />
-    </ItemGroup>
-</Project>

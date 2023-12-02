@@ -1,8 +1,6 @@
-﻿using System.Linq;
-using FluentValidation;
-using NUnit.Framework;
+﻿using FluentValidation;
 
-namespace LittleByte.Test.Validation;
+namespace LittleByte.Validation.Test;
 
 public static class ValidationExceptionExtension
 {
