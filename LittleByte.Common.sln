@@ -27,15 +27,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LittleByte.EntityFramework"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LittleByte.Serilog", "LittleByte.Serilog\LittleByte.Serilog.csproj", "{0E4DF174-7399-4F55-B72E-EC95E118C2F1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LittleByte.Validation", "LittleByte.Validation\LittleByte.Validation.csproj", "{C4612907-F246-4BDB-B4EA-5B7A8242EE2B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LittleByte.Validation", "LittleByte.Validation\LittleByte.Validation.csproj", "{C4612907-F246-4BDB-B4EA-5B7A8242EE2B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LittleByte.PubSub", "LittleByte.PubSub\LittleByte.PubSub.csproj", "{FEE0569B-9384-4C85-8FEA-6A23479635F4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LittleByte.PubSub", "LittleByte.PubSub\LittleByte.PubSub.csproj", "{FEE0569B-9384-4C85-8FEA-6A23479635F4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LittleByte.WorkerQueue", "LittleByte.WorkerQueue\LittleByte.WorkerQueue.csproj", "{6EF4DBD5-9341-413C-B196-E13C3C77520F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LittleByte.WorkerQueue", "LittleByte.WorkerQueue\LittleByte.WorkerQueue.csproj", "{6EF4DBD5-9341-413C-B196-E13C3C77520F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LittleByte.Serilog.Promtail", "LittleByte.Serilog.Promtail\LittleByte.Serilog.Promtail.csproj", "{98B0F3E5-32B3-47AC-94D5-59E1C2803B1B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LittleByte.Serilog.Promtail", "LittleByte.Serilog.Promtail\LittleByte.Serilog.Promtail.csproj", "{98B0F3E5-32B3-47AC-94D5-59E1C2803B1B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LittleByte.AutoMapper.AspNet", "LittleByte.AutoMapper.AspNet\LittleByte.AutoMapper.AspNet.csproj", "{C280E998-22C7-413F-9CAD-BF9D2A71AB9F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LittleByte.AutoMapper.AspNet", "LittleByte.AutoMapper.AspNet\LittleByte.AutoMapper.AspNet.csproj", "{C280E998-22C7-413F-9CAD-BF9D2A71AB9F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LittleByte.AutoMapper.EntityFramework", "LittleByte.AutoMapper.EntityFramework\LittleByte.AutoMapper.EntityFramework.csproj", "{1D23234A-11CA-42AE-B528-2BA64F9B9C32}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -128,6 +130,12 @@ Global
 		{C280E998-22C7-413F-9CAD-BF9D2A71AB9F}.Local|Any CPU.Build.0 = Local|Any CPU
 		{C280E998-22C7-413F-9CAD-BF9D2A71AB9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C280E998-22C7-413F-9CAD-BF9D2A71AB9F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1D23234A-11CA-42AE-B528-2BA64F9B9C32}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D23234A-11CA-42AE-B528-2BA64F9B9C32}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D23234A-11CA-42AE-B528-2BA64F9B9C32}.Local|Any CPU.ActiveCfg = Local|Any CPU
+		{1D23234A-11CA-42AE-B528-2BA64F9B9C32}.Local|Any CPU.Build.0 = Local|Any CPU
+		{1D23234A-11CA-42AE-B528-2BA64F9B9C32}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D23234A-11CA-42AE-B528-2BA64F9B9C32}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
