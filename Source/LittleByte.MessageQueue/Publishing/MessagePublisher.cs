@@ -1,7 +1,8 @@
-﻿using LittleByte.Common.Messaging.Serialization;
+﻿using LittleByte.Common;
+using LittleByte.MessageQueue.Serialization;
 using Microsoft.Extensions.Hosting;
 
-namespace LittleByte.Common.Messaging.Publishing;
+namespace LittleByte.MessageQueue.Publishing;
 
 public abstract class MessagePublisher : BackgroundService
 {
@@ -25,7 +26,7 @@ public abstract class MessagePublisher : BackgroundService
 
     public void Publish(Message message)
     {
-        if(!registeredQueues.Contains(message.QueueName)) AddQueue(message.QueueName);
+        if (!registeredQueues.Contains(message.QueueName)) AddQueue(message.QueueName);
 
         var messageData = messageSerializer.Serialize(message.Body);
         PublishInternal(message.QueueName, messageData);

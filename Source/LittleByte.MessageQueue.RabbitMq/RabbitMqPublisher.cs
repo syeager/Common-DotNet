@@ -1,8 +1,9 @@
-﻿using LittleByte.Common.Messaging.Publishing;
-using LittleByte.Common.Messaging.Serialization;
+﻿using LittleByte.MessageQueue.Publishing;
+using LittleByte.MessageQueue.Serialization;
 using Microsoft.Extensions.Options;
+using RabbitMQ.Client;
 
-namespace LittleByte.Common.Messaging.Implementations.RabbitMq;
+namespace LittleByte.MessageQueue.RabbitMq;
 
 public sealed class RabbitMqPublisher : MessagePublisher
 {
@@ -38,16 +39,16 @@ public sealed class RabbitMqPublisher : MessagePublisher
                 Connect();
                 connected = true;
             }
-            catch(Exception exception)
+            catch (Exception exception)
             {
                 Console.WriteLine($"Failed to connect to RabbitMQ: {exception.Message}");
             }
 
-            if(!connected)
+            if (!connected)
             {
                 await Task.Delay(TimeSpan.FromSeconds(10));
             }
-        } while(!connected);
+        } while (!connected);
 
         Console.WriteLine("Connected to RabbitMQ");
     }

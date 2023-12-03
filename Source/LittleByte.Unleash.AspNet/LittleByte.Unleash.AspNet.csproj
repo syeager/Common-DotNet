@@ -1,14 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
-
 	<PropertyGroup>
-		<TargetFramework>net8.0</TargetFramework>
-		<ImplicitUsings>enable</ImplicitUsings>
-		<Nullable>enable</Nullable>
 		<OutputType>Library</OutputType>
 	</PropertyGroup>
-
 	<ItemGroup>
-	  <ProjectReference Include="..\LittleByte.Unleash\LittleByte.Unleash.csproj" />
+		<ProjectReference Include="..\LittleByte.Unleash\LittleByte.Unleash.csproj" />
 	</ItemGroup>
-
 </Project>

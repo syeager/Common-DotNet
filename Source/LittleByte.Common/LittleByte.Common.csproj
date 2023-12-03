@@ -1,18 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-	<PropertyGroup>
-	  <LangVersion>11</LangVersion>
-	</PropertyGroup>
-	<ItemGroup>
-		<Compile Remove="Messaging\**" />
-		<EmbeddedResource Remove="Messaging\**" />
-		<None Remove="Messaging\**" />
-	</ItemGroup>
 	<ItemGroup>
 		<AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
 			<_Parameter1>LittleByte.Test</_Parameter1>
 		</AssemblyAttribute>
 	</ItemGroup>
-
 	<ItemGroup>
 		<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="7.0.4" />
 		<PackageReference Include="Microsoft.Extensions.Configuration" Version="7.0.0" />

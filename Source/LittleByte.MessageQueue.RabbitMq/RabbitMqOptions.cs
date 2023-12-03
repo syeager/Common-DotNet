@@ -1,4 +1,4 @@
-﻿namespace LittleByte.Common.Messaging.Implementations.RabbitMq;
+﻿namespace LittleByte.MessageQueue.RabbitMq;
 
 public sealed class RabbitMqOptions
 {

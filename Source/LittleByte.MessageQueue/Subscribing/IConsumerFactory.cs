@@ -1,4 +1,4 @@
-﻿namespace LittleByte.Common.Messaging.Subscribing;
+﻿namespace LittleByte.MessageQueue.Subscribing;
 
 public interface IConsumerFactory
 {

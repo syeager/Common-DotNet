@@ -1,6 +1,6 @@
 ﻿using System.Text.Json;
 
-namespace LittleByte.Common.Messaging.Serialization.JsonText;
+namespace LittleByte.MessageQueue.Serialization.JsonText;
 
 public class JsonTextSerializer : IMessageSerializer
 {

@@ -1,0 +1,8 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <PackageReference Include="RabbitMQ.Client" Version="6.7.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LittleByte.MessageQueue\LittleByte.MessageQueue.csproj" />
+  </ItemGroup>
+</Project>

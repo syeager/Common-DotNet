@@ -1,7 +1,8 @@
-﻿using LittleByte.Common.Messaging.Serialization;
+﻿using LittleByte.Common;
+using LittleByte.MessageQueue.Serialization;
 using Microsoft.Extensions.Hosting;
 
-namespace LittleByte.Common.Messaging.Subscribing;
+namespace LittleByte.MessageQueue.Subscribing;
 
 public abstract class MessageBrokerService : BackgroundService
 {
@@ -30,7 +31,7 @@ public abstract class MessageBrokerService : BackgroundService
 
     private void RegisterConsumers(IReadOnlyCollection<IConsumer> consumers)
     {
-        foreach(var consumer in consumers)
+        foreach (var consumer in consumers)
         {
             AddConsumer(consumer);
             registeredConsumers.Add(consumer.QueueName, consumer);
@@ -42,7 +43,7 @@ public abstract class MessageBrokerService : BackgroundService
         var consumer = registeredConsumers[queueName];
 
         var message = messageDeserializer.Deserialize(consumer.MessageType, messageData);
-        if(message == null)
+        if (message == null)
         {
             // todo
             return;

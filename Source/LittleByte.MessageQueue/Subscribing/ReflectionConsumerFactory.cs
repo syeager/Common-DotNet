@@ -2,7 +2,7 @@
 using System.Reflection;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace LittleByte.Common.Messaging.Subscribing;
+namespace LittleByte.MessageQueue.Subscribing;
 
 public sealed class ReflectionConsumerFactory : IConsumerFactory
 {

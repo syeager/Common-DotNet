@@ -1,11 +1,11 @@
-﻿using LittleByte.Common.Messaging.Implementations.RabbitMq;
-using LittleByte.Common.Messaging.Publishing;
-using LittleByte.Common.Messaging.Serialization;
-using LittleByte.Common.Messaging.Serialization.JsonText;
+﻿using LittleByte.Common;
+using LittleByte.MessageQueue.Publishing;
+using LittleByte.MessageQueue.Serialization;
+using LittleByte.MessageQueue.Serialization.JsonText;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace LittleByte.Common.Messaging.Configuration;
+namespace LittleByte.MessageQueue.RabbitMq;
 
 public static class MessagingConfiguration
 {

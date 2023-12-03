@@ -1,4 +1,4 @@
-﻿namespace LittleByte.Common.Messaging.Publishing;
+﻿namespace LittleByte.MessageQueue.Publishing;
 
 public abstract class Message
 {

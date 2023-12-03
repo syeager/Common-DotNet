@@ -1,9 +1,10 @@
-﻿using LittleByte.Common.Messaging.Serialization;
-using LittleByte.Common.Messaging.Subscribing;
-using Microsoft.EntityFrameworkCore.Metadata;
+﻿using LittleByte.MessageQueue.Serialization;
+using LittleByte.MessageQueue.Subscribing;
 using Microsoft.Extensions.Options;
+using RabbitMQ.Client;
+using RabbitMQ.Client.Events;
 
-namespace LittleByte.Common.Messaging.Implementations.RabbitMq;
+namespace LittleByte.MessageQueue.RabbitMq;
 
 public sealed class RabbitMqBroker : MessageBrokerService
 {
@@ -38,16 +39,16 @@ public sealed class RabbitMqBroker : MessageBrokerService
                 Connect();
                 connected = true;
             }
-            catch(Exception exception)
+            catch (Exception exception)
             {
                 Console.WriteLine($"Failed to connect to RabbitMQ: {exception.Message}");
             }
 
-            if(!connected)
+            if (!connected)
             {
                 await Task.Delay(TimeSpan.FromSeconds(10));
             }
-        } while(!connected);
+        } while (!connected);
 
         Console.WriteLine("Connected to RabbitMQ");
     }
