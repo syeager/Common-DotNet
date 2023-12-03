@@ -38,6 +38,9 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LittleByte.WorkerQueue", "Source\LittleByte.WorkerQueue\LittleByte.WorkerQueue.csproj", "{91C90DC1-10A9-45FC-AA95-1154C2750F9D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{59F0A3FC-D6D0-4F60-A8EA-D1B05B7E41EE}"
+	ProjectSection(SolutionItems) = preProject
+		Test\Directory.Build.props = Test\Directory.Build.props
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LittleByte.Test", "Test\LittleByte.Test\LittleByte.Test.csproj", "{86F5F842-C1DC-41A5-B097-F8C0772693E6}"
 EndProject

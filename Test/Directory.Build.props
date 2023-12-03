@@ -1,0 +1,10 @@
+<Project>
+	<PropertyGroup>
+		<Nullable>enable</Nullable>
+		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+		<ImplicitUsings>enable</ImplicitUsings>
+	</PropertyGroup>
+	<PropertyGroup>
+		<NoWarn>NUnit2005</NoWarn>
+	</PropertyGroup>
+</Project>

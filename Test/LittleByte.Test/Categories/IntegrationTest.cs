@@ -1,5 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
+﻿using LittleByte.Serilog;
+using Microsoft.Extensions.DependencyInjection;
 using NUnit.Framework;
 
 namespace LittleByte.Test.Categories;
@@ -16,8 +16,8 @@ public abstract class IntegrationTest : TestCategory
     {
         var serviceCollection = new ServiceCollection();
 
-        AddLogging(serviceCollection);
-        AddTokens(serviceCollection);
+        LogsConfiguration.InitLogging();
+        //AddTokens(serviceCollection);
         SetupInternal(serviceCollection);
 
         services = serviceCollection.BuildServiceProvider();
@@ -29,20 +29,13 @@ public abstract class IntegrationTest : TestCategory
         services.Dispose();
     }
 
-    private static void AddLogging(IServiceCollection serviceCollection)
-    {
-        serviceCollection
-            .AddScoped<IDiagnosticContext, NullDiagnosticContext>()
-            .AddTransient(typeof(ILogger<>), typeof(NullLogger<>))
-            .AddLogs();
-    }
-
-    private static void AddTokens(IServiceCollection serviceCollection)
-    {
-        serviceCollection
-            .AddTransient<ITokenGenerator, NullTokenGenerator>()
-            .AddTransient<SecurityTokenHandler, JwtSecurityTokenHandler>();
-    }
+    // TODO: Where does this go?
+    //private static void AddTokens(IServiceCollection serviceCollection)
+    //{
+    //    serviceCollection
+    //        .AddTransient<ITokenGenerator, NullTokenGenerator>()
+    //        .AddTransient<SecurityTokenHandler, JwtSecurityTokenHandler>();
+    //}
 
     protected TService GetService<TService>()
         where TService : notnull
