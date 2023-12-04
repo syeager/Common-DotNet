@@ -35,6 +35,6 @@ public static class OpenApiConfiguration
     {
         return app
             .UseOpenApi(null)
-            .UseSwaggerUi3();
+            .UseSwaggerUi();
     }
 }

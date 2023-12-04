@@ -8,6 +8,6 @@
 	<ItemGroup>
 		<PackageReference Include="FluentValidation" Version="11.8.1" />
 		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.0" />
-		<PackageReference Include="NSwag.AspNetCore" Version="13.20.0" />
+		<PackageReference Include="NSwag.AspNetCore" Version="14.0.0-preview010" />
 	</ItemGroup>
 </Project>

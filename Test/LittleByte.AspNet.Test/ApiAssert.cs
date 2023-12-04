@@ -1,4 +1,5 @@
 ﻿using System.Net;
+using static NUnit.Framework.Assert;
 
 namespace LittleByte.AspNet.Test;
 
@@ -6,21 +7,30 @@ public static class ApiAssert
 {
     public static void IsSuccess(ApiResponse response, HttpStatusCode expectedCode = HttpStatusCode.OK)
     {
-        Assert.IsFalse(response.IsError);
-        Assert.AreEqual((int)expectedCode, response.StatusCode);
+        Multiple(() =>
+        {
+            That(response.IsError, Is.False);
+            That(response.StatusCode, Is.EqualTo((int)expectedCode));
+        });
     }
 
     public static void IsSuccess<T>(ApiResponse<T> response, HttpStatusCode expectedCode = HttpStatusCode.OK)
         where T : class
     {
-        Assert.IsFalse(response.IsError);
-        Assert.IsNotNull(response.Obj);
-        Assert.AreEqual((int)expectedCode, response.StatusCode);
+        Multiple(() =>
+        {
+            That(response.IsError, Is.False);
+            That(response.Obj, Is.Not.Null);
+            That(response.StatusCode, Is.EqualTo((int)expectedCode));
+        });
     }
 
     public static void IsFailure(ApiResponse response, HttpStatusCode expectedCode = HttpStatusCode.BadRequest)
     {
-        Assert.IsTrue(response.IsError);
-        Assert.AreEqual((int)expectedCode, response.StatusCode);
+        Multiple(() =>
+        {
+            That(response.IsError, Is.True);
+            That(response.StatusCode, Is.EqualTo((int)expectedCode));
+        });
     }
 }
