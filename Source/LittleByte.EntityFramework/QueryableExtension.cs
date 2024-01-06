@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using LittleByte.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace LittleByte.EntityFramework;
 

@@ -1,4 +1,4 @@
-﻿namespace LittleByte.EntityFramework;
+﻿namespace LittleByte.Data;
 
 public sealed class MissingEntityException : Exception
 {

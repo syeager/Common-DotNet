@@ -1,6 +1,6 @@
 ﻿using LittleByte.Common;
 
-namespace LittleByte.EntityFramework;
+namespace LittleByte.Data;
 
 public interface IDomainContext
 {
