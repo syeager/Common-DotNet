@@ -1,0 +1,5 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<ItemGroup>
+		<ProjectReference Include="..\LittleByte.Common\LittleByte.Common.csproj" />
+	</ItemGroup>
+</Project>
