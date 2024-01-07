@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using LittleByte.EntityFramework;
+using LittleByte.Data;
 
 namespace LittleByte.AutoMapper.EntityFramework;
 

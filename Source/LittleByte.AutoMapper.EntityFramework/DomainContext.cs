@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using LittleByte.Common;
-using LittleByte.EntityFramework;
+using LittleByte.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;

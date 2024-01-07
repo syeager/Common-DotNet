@@ -1,6 +1,1 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-	<ItemGroup>
-		<ProjectReference Include="..\LittleByte.AspNet\LittleByte.AspNet.csproj" />
-		<ProjectReference Include="..\LittleByte.AutoMapper\LittleByte.AutoMapper.csproj" />
-	</ItemGroup>
-</Project>
+﻿<Project Sdk="Microsoft.NET.Sdk" />

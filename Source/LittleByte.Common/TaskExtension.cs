@@ -1,6 +1,6 @@
 ﻿using System.Runtime.CompilerServices;
 
-namespace LittleByte.AspNet;
+namespace LittleByte.Common;
 
 public static class TaskExtension
 {

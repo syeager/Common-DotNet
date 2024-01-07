@@ -57,6 +57,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LittleByte.MessageQueue.Rab
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LittleByte.Test.EntityFramework", "Test\LittleByte.Test.EntityFramework\LittleByte.Test.EntityFramework.csproj", "{E6DABD6D-7847-41E1-BB14-D1FBBD07A981}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LittleByte.Data", "Source\LittleByte.Data\LittleByte.Data.csproj", "{2AAC82E4-2A34-49DA-AC35-FFD50E122ADE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -211,6 +213,14 @@ Global
 		{E6DABD6D-7847-41E1-BB14-D1FBBD07A981}.Release|Any CPU.ActiveCfg = Debug|Any CPU
 		{E6DABD6D-7847-41E1-BB14-D1FBBD07A981}.Release|x64.ActiveCfg = Debug|Any CPU
 		{E6DABD6D-7847-41E1-BB14-D1FBBD07A981}.Release|x64.Build.0 = Debug|Any CPU
+		{2AAC82E4-2A34-49DA-AC35-FFD50E122ADE}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{2AAC82E4-2A34-49DA-AC35-FFD50E122ADE}.Debug|Any CPU.Build.0 = Debug|x64
+		{2AAC82E4-2A34-49DA-AC35-FFD50E122ADE}.Debug|x64.ActiveCfg = Debug|x64
+		{2AAC82E4-2A34-49DA-AC35-FFD50E122ADE}.Debug|x64.Build.0 = Debug|x64
+		{2AAC82E4-2A34-49DA-AC35-FFD50E122ADE}.Release|Any CPU.ActiveCfg = Release|x64
+		{2AAC82E4-2A34-49DA-AC35-FFD50E122ADE}.Release|Any CPU.Build.0 = Release|x64
+		{2AAC82E4-2A34-49DA-AC35-FFD50E122ADE}.Release|x64.ActiveCfg = Release|x64
+		{2AAC82E4-2A34-49DA-AC35-FFD50E122ADE}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -235,6 +245,7 @@ Global
 		{33D84AE4-665E-43D1-99A5-CFF632265FAC} = {749DF619-3FD0-4C28-BECD-FA8D09EFFE12}
 		{BF073CC2-E9CD-4C4C-97FC-D998177E5508} = {749DF619-3FD0-4C28-BECD-FA8D09EFFE12}
 		{E6DABD6D-7847-41E1-BB14-D1FBBD07A981} = {59F0A3FC-D6D0-4F60-A8EA-D1B05B7E41EE}
+		{2AAC82E4-2A34-49DA-AC35-FFD50E122ADE} = {749DF619-3FD0-4C28-BECD-FA8D09EFFE12}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A13B6A16-12CF-4ABF-953A-62056B6F6894}

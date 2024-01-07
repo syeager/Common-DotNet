@@ -2,8 +2,4 @@
 	<ItemGroup>
 		<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.0" />
 	</ItemGroup>
-	<ItemGroup>
-		<ProjectReference Include="..\LittleByte.AutoMapper\LittleByte.AutoMapper.csproj" />
-		<ProjectReference Include="..\LittleByte.EntityFramework\LittleByte.EntityFramework.csproj" />
-	</ItemGroup>
 </Project>

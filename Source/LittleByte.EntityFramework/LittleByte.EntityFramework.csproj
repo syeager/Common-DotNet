@@ -1,8 +1,5 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<ItemGroup>
-		<ProjectReference Include="..\LittleByte.Common\LittleByte.Common.csproj" />
-	</ItemGroup>
-	<ItemGroup>
 		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.0" />
 	</ItemGroup>
 </Project>

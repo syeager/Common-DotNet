@@ -12,7 +12,7 @@ public interface ITokenGenerator
 
 public sealed class TokenGenerator : ITokenGenerator
 {
-    private TimeProvider timeProvider;
+    private readonly TimeProvider timeProvider;
     private readonly JwtOptions jwtOptions;
     private readonly SigningCredentials signingCredentials;
 
