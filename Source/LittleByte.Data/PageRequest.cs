@@ -1,6 +1,6 @@
 ﻿namespace LittleByte.Data;
 
-public readonly record struct PageRequest(int PageIndex, int PageSize = PageRequest.DefaultPageSize)
+public record PageRequest(int PageIndex = 0, int PageSize = PageRequest.DefaultPageSize)
 {
-    private const int DefaultPageSize = 10;
+    public const int DefaultPageSize = 10;
 }

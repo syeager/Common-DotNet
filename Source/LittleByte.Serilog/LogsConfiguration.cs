@@ -54,4 +54,11 @@ public static class LogsConfiguration
 
         global::Serilog.Log.Logger = logger;
     }
+
+    public static void CreateBootstrap()
+    {
+        global::Serilog.Log.Logger = new LoggerConfiguration()
+            .WriteTo.Console()
+            .CreateBootstrapLogger();
+    }
 }

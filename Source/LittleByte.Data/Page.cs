@@ -1,6 +1,6 @@
 ﻿namespace LittleByte.Data;
 
-public readonly record struct Page<T>(
+public record Page<T>(
     int PageSize,
     int PageIndex,
     int TotalPages,
