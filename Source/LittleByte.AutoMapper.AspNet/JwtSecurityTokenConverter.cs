@@ -4,12 +4,9 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace LittleByte.AutoMapper.AspNet;
 
-public sealed class JwtSecurityTokenConverter : ITypeConverter<JwtSecurityToken?, string?>
+public sealed class JwtSecurityTokenConverter(SecurityTokenHandler tokenHandler)
+    : ITypeConverter<JwtSecurityToken?, string?>
 {
-    private readonly SecurityTokenHandler tokenHandler;
-
-    public JwtSecurityTokenConverter(SecurityTokenHandler tokenHandler) => this.tokenHandler = tokenHandler;
-
     public string? Convert(JwtSecurityToken? source, string? destination, ResolutionContext context) =>
         source is null
             ? null

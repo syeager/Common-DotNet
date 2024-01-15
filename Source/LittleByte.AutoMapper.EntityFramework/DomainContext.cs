@@ -7,20 +7,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace LittleByte.AutoMapper.EntityFramework;
 
-public abstract class DomainContext<TContext, TUser, TRole> : IdentityDbContext<TUser, TRole, Guid>, IDomainContext
+public abstract class DomainContext<TContext, TUser, TRole>(IMapper mapper, DbContextOptions<TContext> options)
+    : IdentityDbContext<TUser, TRole, Guid>(options), IDomainContext
     where TContext : DbContext
     where TUser : IdentityUser<Guid>
     where TRole : IdentityRole<Guid>
 {
     private readonly Dictionary<Guid, EntityMap> entityMaps = new();
-
-    private readonly IMapper mapper;
-
-    protected DomainContext(IMapper mapper, DbContextOptions<TContext> options)
-        : base(options)
-    {
-        this.mapper = mapper;
-    }
 
     public ValueTask<TDomain?> FindAsync<TDomain, TEntity>(Guid id)
         where TEntity : class, IIdObject
