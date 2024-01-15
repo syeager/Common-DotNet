@@ -5,9 +5,18 @@ namespace LittleByte.Serilog.AspNet;
 
 public static class LogsConfiguration
 {
-    public static IApplicationBuilder UseSerilog(this IApplicationBuilder app)
+
+    public static WebApplicationBuilder UseSerilog(this WebApplicationBuilder builder)
     {
-        Serilog.LogsConfiguration.InitLogging();
-        return app.UseSerilogRequestLogging();
+        builder.Host.UseSerilog(
+            (_, services, configuration) =>
+            {
+                configuration
+                    .ReadFrom.Services(services)
+                    .ReadFrom.Configuration(builder.Configuration);
+                services.ConfigureLittleByte();
+            });
+
+        return builder;
     }
 }

@@ -1,4 +1,4 @@
-﻿using LittleByte.Serilog;
+﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using NUnit.Framework;
 
@@ -9,16 +9,16 @@ public abstract class IntegrationTest : TestCategory
 {
     protected ServiceProvider services = null!;
 
-    protected abstract void SetupInternal(IServiceCollection serviceCollection);
+    protected abstract void SetupInternal(IServiceCollection serviceCollection, IConfiguration configuration);
+
+    protected virtual void ConfigureInternal(ConfigurationBuilder builder) { }
 
     [SetUp]
     public virtual void SetUp()
     {
+        var configuration = Configure();
         var serviceCollection = new ServiceCollection();
-
-        LogsConfiguration.InitLogging();
-        //AddTokens(serviceCollection);
-        SetupInternal(serviceCollection);
+        SetupInternal(serviceCollection, configuration);
 
         services = serviceCollection.BuildServiceProvider();
     }
@@ -29,17 +29,16 @@ public abstract class IntegrationTest : TestCategory
         services.Dispose();
     }
 
-    // TODO: Where does this go?
-    //private static void AddTokens(IServiceCollection serviceCollection)
-    //{
-    //    serviceCollection
-    //        .AddTransient<ITokenGenerator, NullTokenGenerator>()
-    //        .AddTransient<SecurityTokenHandler, JwtSecurityTokenHandler>();
-    //}
-
     protected TService GetService<TService>()
         where TService : notnull
     {
         return services.GetRequiredService<TService>();
+    }
+
+    private IConfiguration Configure()
+    {
+        var builder = new ConfigurationBuilder();
+        ConfigureInternal(builder);
+        return builder.Build();
     }
 }
