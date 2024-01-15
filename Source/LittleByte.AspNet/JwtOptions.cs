@@ -1,3 +1,9 @@
 ﻿namespace LittleByte.AspNet;
 
-public record JwtOptions(string Issuer, string Audience, string Secret, int TtlMinutes = 60);
+public class JwtOptions
+{
+    public required string Issuer { get; set; }
+    public required string Audience { get; set; }
+    public required string Secret { get; set; }
+    public int TtlMinutes { get; init; }
+}
