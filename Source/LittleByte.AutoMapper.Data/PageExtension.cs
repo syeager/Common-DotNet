@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using LittleByte.Data;
 
-namespace LittleByte.AutoMapper.EntityFramework;
+namespace LittleByte.AutoMapper.Data;
 
 public static class PageExtension
 {
