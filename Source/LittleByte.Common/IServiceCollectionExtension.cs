@@ -7,7 +7,7 @@ namespace LittleByte.Common;
 
 public static class IServiceCollectionExtension
 {
-    public static void BindOptions<T>(
+    public static IServiceCollection BindOptions<T>(
         this IServiceCollection @this,
         IConfiguration configuration,
         string? key = null
@@ -17,6 +17,8 @@ public static class IServiceCollectionExtension
         key ??= typeof(T).Name;
         var section = configuration.GetSection(key);
         @this.Configure<T>(section);
+
+        return @this;
     }
 
     public static T BindAndGetOptions<T>(
