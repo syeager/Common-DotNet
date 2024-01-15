@@ -1,8 +1,21 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+		<Configurations>Debug;Release</Configurations>
+		<Deterministic>true</Deterministic>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<LangVersion>12.0</LangVersion>
+		<Nullable>enable</Nullable>
+		<OutputType>Library</OutputType>
+		<PlatformTarget>AnyCPU</PlatformTarget>
+		<TargetFramework>net8.0</TargetFramework>
+		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+	</PropertyGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\LittleByte.Common\LittleByte.Common.csproj" />
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="Unleash.Client" Version="4.1.0" />
+		<PackageReference Include="Unleash.Client" Version="4.1.3" />
 	</ItemGroup>
 </Project>

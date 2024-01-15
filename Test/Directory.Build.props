@@ -2,11 +2,6 @@
 <Project>
 	<Import Project="$([MSBuild]::GetPathOfFileAbove('Directory.Build.props', '$(MSBuildThisFileDirectory)../'))" />
 	<PropertyGroup>
-		<Configurations>Debug</Configurations>
-		<IsPackable>false</IsPackable>
-		<IsTestProject>true</IsTestProject>
-	</PropertyGroup>
-	<PropertyGroup>
 		<NoWarn>NUnit2005</NoWarn>
 	</PropertyGroup>
 	<ItemGroup>

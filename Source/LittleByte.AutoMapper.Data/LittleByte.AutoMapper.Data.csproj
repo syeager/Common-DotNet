@@ -13,6 +13,7 @@
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 	</PropertyGroup>
 	<ItemGroup>
-		<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.1" />
+		<ProjectReference Include="..\LittleByte.AutoMapper\LittleByte.AutoMapper.csproj" />
+		<ProjectReference Include="..\LittleByte.Data\LittleByte.Data.csproj" />
 	</ItemGroup>
 </Project>
