@@ -2,6 +2,7 @@ using LittleByte.Common;
 
 namespace LittleByte.Data;
 
+// TODO: Move to LittleByte.Domain.
 public interface IFindByIdQuery<TDomain>
 {
     public ValueTask<TDomain?> FindAsync(Guid id);
@@ -10,16 +11,11 @@ public interface IFindByIdQuery<TDomain>
     public ValueTask<TDomain> FindRequiredForEditAsync(Guid id);
 }
 
-public class FindByIdQuery<TDomain, TEntity, TContext> : IFindByIdQuery<TDomain>
+public class FindByIdQuery<TDomain, TEntity, TContext>(TContext dbContext) : IFindByIdQuery<TDomain>
     where TEntity : class, IIdObject
     where TContext : IDomainContext
 {
-    private readonly TContext dbContext;
-
-    public FindByIdQuery(TContext dbContext)
-    {
-        this.dbContext = dbContext;
-    }
+    private readonly TContext dbContext = dbContext;
 
     public ValueTask<TDomain?> FindAsync(Guid id)
     {
