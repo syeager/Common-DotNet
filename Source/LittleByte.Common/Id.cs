@@ -1,13 +1,13 @@
 namespace LittleByte.Common;
 
-public readonly struct Id<T> : IEquatable<Id<T>>
+public readonly struct Id<T>(Guid value) : IEquatable<Id<T>>
 {
-    public Guid Value { get; }
+    public Guid Value { get; } = value;
 
     public static readonly Id<T> Empty = new(Guid.Empty);
 
-    public Id() => Value = Guid.NewGuid();
-    public Id(Guid value) => Value = value;
+    public Id()
+        : this(Guid.NewGuid()) { }
 
     public static implicit operator Guid(Id<T> id) => id.Value;
     public static implicit operator Guid?(Id<T> id) => id == Empty ? null : id.Value;
