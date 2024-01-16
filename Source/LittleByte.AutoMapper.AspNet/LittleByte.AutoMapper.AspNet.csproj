@@ -1,20 +1,19 @@
-<!--Solution-->
-<Project>
+﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
 		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+		<Configurations>Debug;Release</Configurations>
 		<Deterministic>true</Deterministic>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<LangVersion>12.0</LangVersion>
 		<Nullable>enable</Nullable>
-		<Platforms>AnyCPU</Platforms>
+		<OutputType>Library</OutputType>
+		<PlatformTarget>AnyCPU</PlatformTarget>
 		<TargetFramework>net8.0</TargetFramework>
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 	</PropertyGroup>
-	<PropertyGroup>
-		<Authors>Steve Yeager</Authors>
-	</PropertyGroup>
 	<ItemGroup>
-		<PackageReference Include="JetBrains.Annotations" Version="2023.3.0" />
-	</ItemGroup>
+    <ProjectReference Include="..\LittleByte.AspNet\LittleByte.AspNet.csproj" />
+    <ProjectReference Include="..\LittleByte.AutoMapper\LittleByte.AutoMapper.csproj" />
+  </ItemGroup>
 </Project>

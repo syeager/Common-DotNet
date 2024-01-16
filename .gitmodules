@@ -1,0 +1,3 @@
+[submodule "settings-editor_config"]
+	path = settings-editor_config
+	url = https://github.com/syeager/settings-editor_config.git
