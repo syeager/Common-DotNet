@@ -25,3 +25,8 @@ public readonly struct Id<T>(Guid value) : IEquatable<Id<T>>
 
     public Id<T> GetNewIfEmpty() => this == Empty ? new Id<T>() : this;
 }
+
+public static class ToIdExtension
+{
+    public static Id<T> ToId<T>(this Guid id) => new(id);
+}
