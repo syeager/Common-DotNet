@@ -1,9 +1,11 @@
-﻿namespace LittleByte.Domain;
+﻿using LittleByte.Common;
+
+namespace LittleByte.Domain;
 
 public interface IFindByIdQuery<TDomain>
 {
-    public ValueTask<TDomain?> FindAsync(Guid id);
-    public ValueTask<TDomain?> FindForEditAsync(Guid id);
-    public ValueTask<TDomain> FindRequiredAsync(Guid id);
-    public ValueTask<TDomain> FindRequiredForEditAsync(Guid id);
+    public ValueTask<TDomain?> FindAsync(Id<TDomain> id);
+    public ValueTask<TDomain?> FindForEditAsync(Id<TDomain> id);
+    public ValueTask<TDomain> FindRequiredAsync(Id<TDomain> id);
+    public ValueTask<TDomain> FindRequiredForEditAsync(Id<TDomain> id);
 }
