@@ -10,15 +10,8 @@ public static class HttpExceptionMiddlewareExtension
     }
 }
 
-public class HttpExceptionMiddleware
+public class HttpExceptionMiddleware(RequestDelegate next)
 {
-    private readonly RequestDelegate next;
-
-    public HttpExceptionMiddleware(RequestDelegate next)
-    {
-        this.next = next;
-    }
-
     [UsedImplicitly]
     public async Task InvokeAsync(HttpContext context)
     {
