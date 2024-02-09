@@ -21,9 +21,9 @@ public static class JwtConfiguration
         var options = services.BindAndGetOptions<JwtOptions>(configuration);
 
         services
-            .AddTransient<SecurityTokenHandler, JwtSecurityTokenHandler>()
             .AddTransient<ITokenGenerator, TokenGenerator>()
             .AddTransient<ICredentialsGenerator, CredentialsGenerator>()
+            .AddSingleton<SecurityTokenHandler, JwtSecurityTokenHandler>()
             .AddJwtAuthentication(options);
 
         return services;
