@@ -2,13 +2,8 @@
 
 namespace LittleByte.AspNet;
 
-public class HttpException : Exception
+public class HttpException(HttpStatusCode statusCode, string message, Exception? innerException = null)
+    : Exception(message, innerException)
 {
-    public HttpStatusCode StatusCode { get; }
-
-    public HttpException(HttpStatusCode statusCode, string message, Exception? innerException = null)
-        : base(message, innerException)
-    {
-        StatusCode = statusCode;
-    }
+    public HttpStatusCode StatusCode { get; } = statusCode;
 }
