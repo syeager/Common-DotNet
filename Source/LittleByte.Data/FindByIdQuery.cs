@@ -11,21 +11,21 @@ public class FindByIdQuery<TDomain, TContext>(TContext dbContext) : IFindByIdQue
 
     public ValueTask<TDomain?> FindAsync(Id<TDomain> id)
     {
-        return dbContext.FindAsync<TDomain>(id);
+        return dbContext.FindAsync(id);
     }
 
     public ValueTask<TDomain?> FindForEditAsync(Id<TDomain> id)
     {
-        return dbContext.FindForEditAsync<TDomain>(id);
+        return dbContext.FindForEditAsync(id);
     }
 
     public ValueTask<TDomain> FindRequiredAsync(Id<TDomain> id)
     {
-        return dbContext.FindRequiredAsync<TDomain>(id);
+        return dbContext.FindRequiredAsync(id);
     }
 
     public ValueTask<TDomain> FindRequiredForEditAsync(Id<TDomain> id)
     {
-        return dbContext.FindRequiredForEditAsync<TDomain>(id);
+        return dbContext.FindRequiredForEditAsync(id);
     }
 }
