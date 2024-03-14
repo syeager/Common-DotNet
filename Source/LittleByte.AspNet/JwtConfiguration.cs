@@ -2,6 +2,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.IdentityModel.Tokens.Jwt;
 using System.Net;
 using System.Text;
+using JetBrains.Annotations;
 using LittleByte.Common;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -58,18 +59,32 @@ public static class JwtConfiguration
                     ValidateIssuerSigningKey = true,
                     ValidateLifetime = true,
                 };
-                options.Events = new JwtBearerEvents
-                {
-                    OnChallenge = async context =>
-                    {
-                        context.HandleResponse();
-                        if(context.AuthenticateFailure != null)
-                        {
-                            var result = new ApiResponse(HttpStatusCode.Unauthorized, context.AuthenticateFailure.Message);
-                            await context.Response.WriteJsonAsync(result, (int) HttpStatusCode.Unauthorized);
-                        }
-                    },
-                };
             });
+    }
+}
+
+public static class AuthorizationAndAuthorizationMiddlewareExtension
+{
+    public static IApplicationBuilder UseAuthorizationAndAuthorization(this IApplicationBuilder builder)
+    {
+        return builder
+            .UseMiddleware<UnauthorizedHandlerMiddleware>()
+            .UseAuthentication()
+            .UseAuthorization()
+            ;
+    }
+}
+
+public sealed class UnauthorizedHandlerMiddleware(RequestDelegate next)
+{
+    [UsedImplicitly]
+    public async Task InvokeAsync(HttpContext context)
+    {
+        await next(context);
+
+        if(context.Response.StatusCode == (int)HttpStatusCode.Unauthorized)
+        {
+            throw new HttpException(HttpStatusCode.Unauthorized, "Not authorized to perform that operation");
+        }
     }
 }
