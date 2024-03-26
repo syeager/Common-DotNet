@@ -1,4 +1,6 @@
 ﻿using LittleByte.Common;
+using LittleByte.Data;
+using LittleByte.Domain;
 using Microsoft.EntityFrameworkCore;
 
 namespace LittleByte.EntityFramework;
@@ -31,5 +33,46 @@ public static class DbContextExtension
     {
         var dao = dbContext.ChangeTracker.Entries<T>().FirstOrDefault(e => e.Entity.Id == id)?.Entity;
         return dao;
+    }
+}
+
+public abstract class Database<T>(DbContextOptions<T> options) : DbContext(options)
+    where T : DbContext
+{
+    public ValueTask<TDomain?> FindAsync<TDomain>(Id<TDomain> id)
+        where TDomain : DomainModel<TDomain>
+    {
+        return FindInternalAsync(id, false);
+    }
+
+    public ValueTask<TDomain?> FindForEditAsync<TDomain>(Id<TDomain> id)
+        where TDomain : DomainModel<TDomain>
+    {
+        return FindInternalAsync(id, true);
+    }
+
+    public async ValueTask<TDomain> FindRequiredAsync<TDomain>(Id<TDomain> id)
+        where TDomain : DomainModel<TDomain>
+    {
+        var domain = await FindAsync(id);
+        return domain ?? throw new MissingEntityException(id, typeof(TDomain));
+    }
+
+    public async ValueTask<TDomain> FindRequiredForEditAsync<TDomain>(Id<TDomain> id)
+        where TDomain : DomainModel<TDomain>
+    {
+        var domain = await FindForEditAsync(id);
+        return domain ?? throw new MissingEntityException(id, typeof(TDomain));
+    }
+
+    private async ValueTask<TDomain?> FindInternalAsync<TDomain>(Id<TDomain> id, bool isEditable)
+        where TDomain : DomainModel<TDomain>
+    {
+        var query = isEditable
+            ? Set<TDomain>().AsTracking()
+            : Set<TDomain>();
+
+        var entity = await query.FirstOrDefaultAsync(e => e.Id == id);
+        return entity ?? default;
     }
 }
