@@ -2,7 +2,7 @@
 
 public static class IQueryableExtension
 {
-    public static async Task<IQueryable<TModel>> FilterAsync<TModel, TRequest>(
+    public static async ValueTask<IQueryable<TModel>> FilterAsync<TModel, TRequest>(
         this IQueryable<TModel> @this,
         Filter<TModel, TRequest> filter,
         TRequest request
@@ -12,8 +12,8 @@ public static class IQueryableExtension
         return @this;
     }
 
-    public static async Task<IQueryable<TModel>> FilterAsync<TModel, TRequest>(
-        this Task<IQueryable<TModel>> @this,
+    public static async ValueTask<IQueryable<TModel>> FilterAsync<TModel, TRequest>(
+        this ValueTask<IQueryable<TModel>> @this,
         Filter<TModel, TRequest> filter,
         TRequest request
     )
@@ -31,14 +31,24 @@ public static class IQueryableExtension
 
 public abstract class Filter<TModel, TRequest>
 {
-    protected abstract bool WillFilter(TRequest request);
-    protected abstract Task<IQueryable<TModel>> FilterAsyncInternal(IQueryable<TModel> query, TRequest request);
+    protected abstract bool WillFilter(TRequest parameters);
+    
+    
+    protected virtual ValueTask<IQueryable<TModel>> FilterAsyncInternal(IQueryable<TModel> query, TRequest parameters)
+    {
+        return ValueTask.FromResult(FilterInternal(query, parameters));
+    }
 
-    public async Task<IQueryable<TModel>> FilterAsync(IQueryable<TModel> query, TRequest request)
+    protected virtual IQueryable<TModel> FilterInternal(IQueryable<TModel> query, TRequest parameters)
+    {
+        throw new NotSupportedException();
+    }
+
+    public async ValueTask<IQueryable<TModel>> FilterAsync(IQueryable<TModel> query, TRequest request)
     {
         var willFilter = WillFilter(request);
 
-        var task = willFilter ? FilterAsyncInternal(query, request) : Task.FromResult(query);
+        var task = willFilter ? FilterAsyncInternal(query, request) : ValueTask.FromResult(query);
         return await task;
     }
 }
