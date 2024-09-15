@@ -11,3 +11,5 @@ public class ResponseTypeAttribute : ProducesResponseTypeAttribute
     public ResponseTypeAttribute(HttpStatusCode statusCode, Type dtoType)
         : base(typeof(ApiResponse<>).MakeGenericType(dtoType), (int) statusCode) { }
 }
+
+public class ResponseTypeAttribute<T>(HttpStatusCode statusCode) : ResponseTypeAttribute(statusCode, typeof(T));
