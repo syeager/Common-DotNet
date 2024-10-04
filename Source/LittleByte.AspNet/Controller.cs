@@ -11,4 +11,6 @@ public abstract class Controller : ControllerBase
 
     protected static OkResponse Ok(string message = "") => new(message);
     protected static OkResponse<T> Ok<T>(T obj, string message = "") where T : class => new(obj, message);
+    protected static BadRequestResponse Bad(string message = "") => new(message);
+    protected static BadRequestResponse<T> Bad<T>(string message = "") where T : class => new(message);
 }
