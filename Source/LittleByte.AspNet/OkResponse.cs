@@ -2,15 +2,6 @@
 
 namespace LittleByte.AspNet;
 
-public class OkResponse : ApiResponse
-{
-    public OkResponse(string message = "")
-        : base(HttpStatusCode.OK, message) { }
-}
+public class OkResponse(string message = "") : ApiResponse(HttpStatusCode.OK, message);
 
-public class OkResponse<T> : ApiResponse<T>
-    where T : class
-{
-    public OkResponse(T obj, string message = "")
-        : base(HttpStatusCode.OK, obj, message) { }
-}
+public class OkResponse<T>(T obj, string message = "") : ApiResponse<T>(HttpStatusCode.OK, obj, message);

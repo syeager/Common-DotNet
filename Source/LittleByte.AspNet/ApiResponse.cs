@@ -26,17 +26,10 @@ public class ApiResponse : IActionResult
     }
 }
 
-public class ApiResponse<T> : ApiResponse
-    where T : class
+public class ApiResponse<T>(HttpStatusCode statusCode, T? obj, string message = "") : ApiResponse(statusCode, message)
 {
-    public T? Obj { get; }
-
-    public ApiResponse(HttpStatusCode statusCode, T? obj, string message = "")
-        : base(statusCode, message)
-    {
-        Obj = obj;
-    }
+    public T? Obj { get; } = obj;
 
     public ApiResponse(HttpStatusCode statusCode, string message)
-        : this(statusCode, null, message) { }
+        : this(statusCode, default, message) { }
 }
