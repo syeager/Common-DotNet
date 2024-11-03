@@ -7,17 +7,10 @@ public interface ISaveContextCommand
     Task CommitChangesAsync();
 }
 
-public class SaveContextCommand<T> : ISaveContextCommand
+public sealed class SaveContextCommand<T>(T dbContext) : ISaveContextCommand
     where T : DbContext
 {
-    private readonly T dbContext;
-
-    public SaveContextCommand(T dbContext)
-    {
-        this.dbContext = dbContext;
-    }
-
-    public virtual Task CommitChangesAsync()
+    public Task CommitChangesAsync()
     {
         return dbContext.SaveChangesAsync();
     }
